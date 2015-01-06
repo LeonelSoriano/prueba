@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="200cm" height="101cm" viewBox="-1356 -190 3984 2015" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="478" y="-189" width="235" height="67"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="478" y="-189" width="235" height="67"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="595.5" y="-151.6">
+      <tspan x="595.5" y="-151.6">Junta Directiva</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="498" y="-45" width="204" height="75"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="498" y="-45" width="204" height="75"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="600" y="-3.6">
+      <tspan x="600" y="-3.6">Presidencia</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="596.549" y1="-121.011" x2="598.83" y2="-45.9814"/>
+  <g>
+    <rect style="fill: #ffffff" x="797" y="-123" width="214" height="70"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #671c1c" x="797" y="-123" width="214" height="70"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="904" y="-100.1">
+      <tspan x="904" y="-100.1">Juridica</tspan>
+      <tspan x="904" y="-84.1">Asesoria</tspan>
+      <tspan x="904" y="-68.1">Tributaria</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 20; stroke: #000000" x1="796.004" y1="-86.4122" x2="597.69" y2="-83.4964"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="600,31.0094 600,114.251 136.332,114.251 136.332,197.492 "/>
+  <g>
+    <rect style="fill: #ffffff" x="1676.46" y="200.682" width="293" height="62"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1676.46" y="200.682" width="293" height="62"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1822.96" y="235.582">
+      <tspan x="1822.96" y="235.582">Operativo</tspan>
+    </text>
+  </g>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="600,31.0094 600,115.342 1822.96,115.342 1822.96,199.674 "/>
+  <g>
+    <rect style="fill: #ffffff" x="60.7764" y="344.166" width="151.485" height="52.6697"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="60.7764" y="344.166" width="151.485" height="52.6697"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="136.519" y="374.401">
+      <tspan x="136.519" y="374.401">Mantenimiento</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-660.08" y="344.402" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-660.08" y="344.402" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-573.08" y="375.302">
+      <tspan x="-573.08" y="375.302">Logistica</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="696.661" y="334.768" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="696.661" y="334.768" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="783.661" y="365.668">
+      <tspan x="783.661" y="365.668">Fabricación</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-10.168" y="198.5" width="293" height="59.3001"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-10.168" y="198.5" width="293" height="59.3001"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="136.332" y="232.05">
+      <tspan x="136.332" y="232.05">Servicio o Producción</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="136.372" y1="258.768" x2="136.483" y2="343.167"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-485.075,371.402 -174.323,371.402 -174.323,300.967 136.428,300.967 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="695.655,361.768 416.041,361.768 416.041,300.967 136.428,300.967 "/>
+  <g>
+    <rect style="fill: #ffffff" x="-160.168" y="480.61" width="151.485" height="53.9422"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-160.168" y="480.61" width="151.485" height="53.9422"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-84.4258" y="511.481">
+      <tspan x="-84.4258" y="511.481">Reparación</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="61.7052" y="484.43" width="151.485" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="61.7052" y="484.43" width="151.485" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="137.448" y="515.33">
+      <tspan x="137.448" y="515.33">Mantenimiento</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="309.294" y="485.096" width="151.485" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="309.294" y="485.096" width="151.485" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="385.037" y="515.996">
+      <tspan x="385.037" y="515.996">Limpieza</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="136.699" y1="397.837" x2="137.263" y2="483.457"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="136.981,440.648 -86.2896,440.262 -85.1998,479.625 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="136.981,440.648 384.908,440.534 384.987,484.098 "/>
+  <g>
+    <rect style="fill: #ffffff" x="-655.266" y="481.78" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-655.266" y="481.78" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-571.091" y="512.68">
+      <tspan x="-571.091" y="512.68">Seguridad</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-948.104" y="482.52" width="242.15" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-948.104" y="482.52" width="242.15" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-827.029" y="513.42">
+      <tspan x="-827.029" y="513.42">Almacen de Productos Terminados</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="-572.675" y1="399.391" x2="-571.496" y2="480.791"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-827.575,481.523 -828.372,440.79 -828.372,440.79 -572.086,440.092 "/>
+  <g>
+    <rect style="fill: #ffffff" x="-433.35" y="483.274" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-433.35" y="483.274" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-349.175" y="514.174">
+      <tspan x="-349.175" y="514.174">Almacen de Materiales</tspan>
+    </text>
+  </g>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-349.101,482.274 -348.99,440.02 -572.086,440.092 "/>
+  <g>
+    <rect style="fill: #ffffff" x="-1145.3" y="481.557" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1145.3" y="481.557" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-1061.12" y="512.457">
+      <tspan x="-1061.12" y="512.457">Compra</tspan>
+    </text>
+  </g>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1061.12,481.557 -1061.38,440.206 -829.377,441.005 "/>
+  <g>
+    <rect style="fill: #ffffff" x="-1354.64" y="480.782" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1354.64" y="480.782" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-1270.46" y="511.682">
+      <tspan x="-1270.46" y="511.682">Seguridad</tspan>
+    </text>
+  </g>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1270.38,479.791 -1270.26,440.695 -1061.98,440.695 "/>
+  <g>
+    <rect style="fill: #ffffff" x="1424.24" y="342.891" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1424.24" y="342.891" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1508.41" y="373.791">
+      <tspan x="1508.41" y="373.791">Administración</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="2160.16" y="352.582" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2160.16" y="352.582" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="2244.34" y="383.482">
+      <tspan x="2244.34" y="383.482">Venta</tspan>
+    </text>
+  </g>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1822.96,263.658 1822.96,302.787 1508.41,302.787 1508.41,341.893 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1822.96,262.682 1822.96,302.33 2244.34,302.33 2244.34,352.582 "/>
+  <g>
+    <rect style="fill: #ffffff" x="1036.08" y="486.361" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1036.08" y="486.361" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1120.26" y="517.261">
+      <tspan x="1120.26" y="517.261">Contabilidad</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1271.53" y="486.361" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1271.53" y="486.361" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1355.7" y="517.261">
+      <tspan x="1355.7" y="517.261">Recurso Humano</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1513.7" y="486.361" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1513.7" y="486.361" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1597.88" y="517.261">
+      <tspan x="1597.88" y="517.261">Informatica</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1740.74" y="486.361" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1740.74" y="486.361" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1824.91" y="517.261">
+      <tspan x="1824.91" y="517.261">Servicio Generales</tspan>
+    </text>
+  </g>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1508.41,397.886 1508.41,441.626 1120.26,441.626 1120.26,485.366 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1508.41,397.886 1508.41,441.626 1355.7,441.626 1355.7,485.366 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1508.41,397.886 1508.41,441.626 1597.88,441.626 1597.88,485.366 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1508.41,397.886 1508.41,441.626 1824.91,441.626 1824.91,485.366 "/>
+  <g>
+    <rect style="fill: #ffffff" x="2014.87" y="484.679" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2014.87" y="484.679" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="2099.04" y="515.579">
+      <tspan x="2099.04" y="515.579">Venta</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="2241.9" y="484.679" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2241.9" y="484.679" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="2326.08" y="515.579">
+      <tspan x="2326.08" y="515.579">Cobranza</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="2458.85" y="484.679" width="168.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2458.85" y="484.679" width="168.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="2543.03" y="515.579">
+      <tspan x="2543.03" y="515.579">Comercializacion</tspan>
+    </text>
+  </g>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2244.34,407.584 2244.34,445.631 2099.04,445.631 2099.04,483.678 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2244.34,407.584 2244.34,445.631 2326.08,445.631 2326.08,483.678 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2244.34,407.584 2244.34,445.631 2543.03,445.631 2543.03,483.678 "/>
+  <g>
+    <rect style="fill: #ffffff" x="-140.852" y="651.063" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-140.852" y="651.063" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-53.852" y="681.963">
+      <tspan x="-53.852" y="681.963">Costura</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="528.386" y="662.819" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="528.386" y="662.819" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="615.386" y="693.719">
+      <tspan x="615.386" y="693.719">Area Metalurgica</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="946.985" y="662.819" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="946.985" y="662.819" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1033.98" y="693.719">
+      <tspan x="1033.98" y="693.719">Espumado</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1601.87" y="661.94" width="219.1" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1601.87" y="661.94" width="219.1" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1711.42" y="692.84">
+      <tspan x="1711.42" y="692.84">Colchones Producto Terminado</tspan>
+    </text>
+  </g>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="783.661,389.572 783.661,575.837 615.386,575.837 615.386,661.817 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="783.661,389.572 783.661,575.837 -53.852,575.837 -53.852,650.085 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="783.661,389.764 783.661,575.606 1033.98,575.606 1033.98,661.816 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="783.661,389.77 783.661,575.905 1711.42,575.905 1711.42,660.944 "/>
+  <g>
+    <rect style="fill: #ffffff" x="-421.283" y="780.54" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-421.283" y="780.54" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-334.283" y="811.44">
+      <tspan x="-334.283" y="811.44">Marco</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-141.031" y="775.088" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-141.031" y="775.088" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-54.031" y="805.988">
+      <tspan x="-54.031" y="805.988">Estabilizadores</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="137.938" y="780.54" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="137.938" y="780.54" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="224.938" y="811.44">
+      <tspan x="224.938" y="811.44">Resorte</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="-53.8924" y1="706.056" x2="-53.9906" y2="774.094"/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-53.852,706.038 -53.852,742.801 -334.283,742.801 -334.283,779.565 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-53.852,706.038 -53.852,742.801 224.938,742.801 224.938,779.565 "/>
+  <g>
+    <rect style="fill: #ffffff" x="-141.223" y="975.735" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-141.223" y="975.735" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-54.2235" y="1006.64">
+      <tspan x="-54.2235" y="1006.64">Armadura</tspan>
+    </text>
+  </g>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-334.283,835.523 -334.283,900.801 -54.2235,900.801 -54.2235,974.732 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-54.031,830.09 -54.031,902.412 -54.2235,902.412 -54.2235,974.734 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="224.938,834.814 224.938,901.892 -54.2235,901.892 -54.2235,974.742 "/>
+  <g>
+    <rect style="fill: #ffffff" x="1414.61" y="798.384" width="219.1" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1414.61" y="798.384" width="219.1" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1524.16" y="829.284">
+      <tspan x="1524.16" y="829.284">Empaquetado</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1815.55" y="799.798" width="219.1" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1815.55" y="799.798" width="219.1" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1925.1" y="830.698">
+      <tspan x="1925.1" y="830.698">Ensamblaje</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1558.74" y="974.623" width="219.1" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1558.74" y="974.623" width="219.1" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1668.29" y="1005.52">
+      <tspan x="1668.29" y="1005.52">Armado</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1873.23" y="976.304" width="219.1" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1873.23" y="976.304" width="219.1" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1982.78" y="1007.2">
+      <tspan x="1982.78" y="1007.2">Costura</tspan>
+    </text>
+  </g>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1711.42,716.937 1711.42,756.455 1524.16,756.455 1524.16,798.458 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1711.42,716.916 1711.42,755.796 1925.1,755.796 1925.1,798.924 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1925.1,854.801 1925.1,901.644 1668.29,901.644 1668.29,973.62 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1925.1,854.801 1925.1,901.644 1982.78,901.644 1982.78,975.302 "/>
+  <g>
+    <rect style="fill: #ffffff" x="792.455" y="798.938" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="792.455" y="798.938" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="879.455" y="829.838">
+      <tspan x="879.455" y="829.838">Preparación</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1100.74" y="800.352" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1100.74" y="800.352" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1187.74" y="831.252">
+      <tspan x="1187.74" y="831.252">Vaciado</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="950.841" y="974.295" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="950.841" y="974.295" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1037.84" y="1005.19">
+      <tspan x="1037.84" y="1005.19">Peeler</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1184.18" y="975.709" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1184.18" y="975.709" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1271.18" y="1006.61">
+      <tspan x="1271.18" y="1006.61">Bloque</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1311.39" y="1111.47" width="174" height="187.367"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1311.39" y="1111.47" width="174" height="187.367"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1398.39" y="1209.05">
+      <tspan x="1398.39" y="1209.05">Laminado</tspan>
+    </text>
+  </g>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1033.98,717.817 1033.98,757.879 879.455,757.879 879.455,797.94 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1033.98,717.805 1033.98,757.21 1187.74,757.21 1187.74,799.371 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1187.74,855.348 1187.74,914.324 1037.84,914.324 1037.84,973.299 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1187.74,855.348 1187.74,914.324 1271.18,914.324 1271.18,974.722 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1037.93,1029.3 1038.51,1202.67 1310.39,1204.55 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1271.27,1030.71 1271.85,1204.09 1310.39,1204.41 "/>
+  <g>
+    <rect style="fill: #ffffff" x="1047" y="1419.76" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1047" y="1419.76" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1134" y="1450.66">
+      <tspan x="1134" y="1450.66">Peeler transformado</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1311.45" y="1419.76" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1311.45" y="1419.76" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1398.45" y="1450.66">
+      <tspan x="1398.45" y="1450.66">Bloque Transformado</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1578.73" y="1421.17" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1578.73" y="1421.17" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1665.73" y="1452.07">
+      <tspan x="1665.73" y="1452.07">Desperdicio</tspan>
+    </text>
+  </g>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1398.39,1299.84 1398.39,1375.99 1665.73,1375.99 1665.73,1420.17 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1398.39,1299.84 1398.39,1375.99 1398.45,1375.99 1398.45,1418.76 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1398.39,1299.84 1398.39,1375.99 1134,1375.99 1134,1418.76 "/>
+  <text font-size="16.696" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="1673.59" y="1409.29">
+    <tspan x="1673.59" y="1409.29">Reutilizable</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="1579.81" y="1544.43" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1579.81" y="1544.43" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1666.81" y="1575.33">
+      <tspan x="1666.81" y="1575.33">Preparación</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="718.853" y="1062.82" width="282.7" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="718.853" y="1062.82" width="282.7" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="860.203" y="1093.72">
+      <tspan x="860.203" y="1093.72">Peeler transformadPeeler transformado</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1579.81" y="1657.4" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1579.81" y="1657.4" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1666.81" y="1688.3">
+      <tspan x="1666.81" y="1688.3">Vaciado</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1579.81" y="1769.18" width="174" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1579.81" y="1769.18" width="174" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1666.81" y="1800.08">
+      <tspan x="1666.81" y="1800.08">Laminado</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1665.98" y1="1476.17" x2="1666.56" y2="1543.43"/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1666.81" y1="1599.43" x2="1666.81" y2="1656.4"/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1666.81" y1="1712.41" x2="1666.81" y2="1768.17"/>
+  <text font-size="16.9331" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="1772.29" y="1689.93">
+    <tspan x="1772.29" y="1689.93">Rigor</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="1782.99" y="1687.55">
+    <tspan x="1782.99" y="1687.55"></tspan>
+  </text>
+  <text font-size="16.9331" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="1773.48" y="1800.53">
+    <tspan x="1773.48" y="1800.53">Rigor Procesado</tspan>
+  </text>
+</svg>

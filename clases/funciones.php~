@@ -1,0 +1,284 @@
+<?php
+
+function formatear_ve($numero)
+{
+    $tmp_money = floor($numero * 100)/100;
+    return number_format($tmp_money,2,',','.' );
+
+}
+
+function rendondear($numero)
+{
+    return floor($numero * 100)/100;
+}
+
+
+
+function fecha_sicap()
+{
+    $fecha_actual = date("Y-m-d");
+    return $fecha_actual;
+}
+
+function sql_mes_anterior()
+{
+    $anterior = date('Y-m-d', strtotime(date('Y-m')." -1 month"));
+
+    $fecha = explode('-',$anterior);
+
+    return  $fecha[0] . '-' . $fecha[1] . '-%';
+}
+
+
+
+function send_error_redirect($bool_error,$msg=null){
+
+    $current_url = explode("?", $_SERVER['REQUEST_URI']);
+
+    if($bool_error){
+        if($msg == null){
+            header('Location: '.$current_url[0].'?error=true');
+        }else{
+            header('Location: '.$current_url[0].'?error=true&msg='.$msg);
+        }
+    }else if(!$bool_error){
+        if($msg == null){
+            header('Location: '.$current_url[0].'?error=false');
+        }else{
+            header('Location: '.$current_url[0].'?error=false&msg='.$msg);
+
+        }
+    }
+
+    exit();
+
+
+}
+
+
+function redireccion_anterior(){
+
+    $url_anterior =  $_SERVER['HTTP_REFERER'];
+
+    header('Location:'.$url_anterior);
+    die;
+}
+
+
+//echo dias_transcurridos('2012-07-01','2012-07-18');
+//echo dias_transcurridos(nueva,actual);
+function dias_transcurridos($fecha_i,$fecha_f)
+{
+    $dias	= (strtotime($fecha_i)-strtotime($fecha_f))/86400;
+    $dias = floor($dias);
+    return $dias;
+}
+
+
+function utf8_multiplataforma($cadena){
+
+    if (isset($_ENV['WINDIR'])){
+        return $cadena;
+    }else{
+        return utf8_decode($cadena);
+    }
+}
+
+function is_leap_year($year)
+{
+    return ((($year % 4) == 0) && ((($year % 100) != 0) || (($year %400) == 0)));
+}
+
+
+function diferencia_salario($year){
+
+    $anhio_bisiesto = ((($year % 4) == 0) && ((($year % 100) != 0) || (($year %400) == 0)));
+
+    if($anhio_bisiesto)
+        return 6;
+    else
+        return 5;
+
+}
+
+
+function getMondays($year, $month)
+{
+    $mondays = array();
+    # First weekday in specified month: 1 = monday, 7 = sunday
+    $firstDay = date('N', mktime(0, 0, 0, $month, 1, $year));
+    /* Add 0 days if monday ... 6 days if tuesday, 1 day if sunday
+        to get the first monday in month */
+    $addDays = (8 - $firstDay) % 7;
+    $mondays[] = date('r', mktime(0, 0, 0, $month, 1 + $addDays, $year));
+
+    $nextMonth = mktime(0, 0, 0, $month + 1, 1, $year);
+
+    # Just add 7 days per iteration to get the date of the subsequent week
+    for ($week = 1, $time = mktime(0, 0, 0, $month, 1 + $addDays + $week * 7, $year);
+         $time < $nextMonth;
+         ++$week, $time = mktime(0, 0, 0, $month, 1 + $addDays + $week * 7, $year))
+    {
+        $mondays[] = date('r', $time);
+    }
+
+    return $mondays;
+}
+
+
+function codigo_to_mes($numero_mes){
+
+    if($numero_mes == 1){
+        return "Enero";
+    }else if($numero_mes == 2){
+        return "Febrero";
+    }else if($numero_mes == 3){
+        return "Marzo";
+    }else if($numero_mes == 4){
+        return "Abril";
+    }else if($numero_mes == 5){
+        return "Mayo";
+    }else if($numero_mes == 6){
+        return "Junio";
+    }else if($numero_mes == 7){
+        return "Julio";
+    }else if($numero_mes == 8){
+        return "Agosto";
+    }else if($numero_mes == 9){
+        return "Septiembre";
+    }else if($numero_mes == 10){
+        return "Octubre";
+    }else if($numero_mes == 11){
+        return "Noviembre";
+    }else if($numero_mes == 12){
+        return "Diciembre";
+    }else{
+        return "Error en Mes";
+    }
+
+}
+
+
+function calculo_entre_anhios($fecha1,$fecha2){
+
+    $d1 = new DateTime($fecha1);
+    $d2 = new DateTime($fecha2);
+
+    $diff = $d2->diff($d1);
+
+    return $diff->y;
+
+}
+
+
+
+//usocountDays(2014, 4, array(0, 6));
+function countDays($year, $month, $ignore) {
+    $count = 0;
+    $counter = mktime(0, 0, 0, $month, 1, $year);
+    while (date("n", $counter) == $month) {
+        if (in_array(date("w", $counter), $ignore) == false) {
+            $count++;
+        }
+        $counter = strtotime("+1 day", $counter);
+    }
+    return $count;
+}
+
+
+function dias_laborables($anhio,$mes)
+{
+    return countDays($anhio, $mes, array(0, 6));
+}
+
+
+
+function cadena_estetica($cadena){
+
+    if(strlen($cadena ) == ''){
+        return '';
+    }
+    if(strlen($cadena )> 0){
+    $nueva_cadena = '';
+
+        $nueva_cadena = strtoupper($cadena[0]);
+
+        $espacio = false;
+        for($i=1;$i< strlen($cadena); $i++){
+            $nueva_cadena .=  strtolower($cadena[$i]);
+
+            if($cadena[$i] == " "){
+                $espacio = true;
+echo("hola2");die;
+            }
+
+            if($espacio){
+                $nueva_cadena .= strtoupper($cadena[$i]);
+                $espacio = false;
+            }
+        }
+
+        return $nueva_cadena;
+    }else{
+        return  '';
+    }
+
+}
+
+function my_decode($string){
+
+
+//    $cadena= 'http://www.anerbarrena.com https://www.facebook.com www.google.es';
+////patrones
+//    $exp_regular='/((http|https|www)[^\s]+)/';
+////cadena nueva
+//    $cadena_nueva = '<a href="$1">$0</a>';
+////filtro los enlaces
+//    $cadena_resultante = preg_replace('/n/', 'ñ', $cadena);
+
+//    echo($cadena_resultante);
+
+    $string = preg_replace('/ñ/', 'enhie', $string);
+    $string = preg_replace('/Ñ/', 'ENHIE', $string);
+    $string = preg_replace('/á/', 'acute', $string);
+    $string = preg_replace('/Á/', 'ACUTE', $string);
+    $string = preg_replace('/é/', 'ecute', $string);
+    $string = preg_replace('/É/', 'ECUTE', $string);
+    $string = preg_replace('/í/', 'icute', $string);
+    $string = preg_replace('/í/', 'ICUTE', $string);
+
+
+    echo($string);
+
+}
+
+
+
+
+
+
+
+
+
+/*select primera_consulta.codigo as codigo,primera_consulta.tipo as tipo,primera_consulta.nombre_bien as nombre_bien, primera_consulta.codigo_alias as codigo_alias, primera_consulta.vida_util as vida_util, primera_consulta.kilometro as kilometro, primera_consulta.nombre_departamento as nombre_departamento  from(
+    (select bie_tipo_basico.codigo as codigo, bie_tipo_basico.tipo as tipo,bie_tipo_basico.nombre_bien as nombre_bien,bie_tipo_basico.codigo_alias as codigo_alias,bie_tipo_basico.vida_util as vida_util,' ' as kilometro,mno_gerencia.descripcion as nombre_departamento from bie_tipo_basico
+
+inner join mno_gerencia on mno_gerencia.codigo = bie_tipo_basico.codigo_departamento where bie_tipo_basico.eliminado = 'n'
+)
+union
+(select bie_tipo_vehiculo.codigo as codigo,bie_tipo_vehiculo.tipo as tipo,bie_tipo_vehiculo.nombre_bien as nombre_bien,bie_tipo_vehiculo.codigo_alias as codigo_alias,bie_tipo_vehiculo.vida_util as vida_util,bie_tipo_vehiculo.kilometros as kilometro,mno_gerencia.descripcion as nombre_departamento from bie_tipo_vehiculo
+
+inner join mno_gerencia on mno_gerencia.codigo = bie_tipo_vehiculo.codigo_departamento
+ where bie_tipo_vehiculo.eliminado = 'n'
+)
+union
+
+(select bie_tipo_maquinaria.codigo as codigo,bie_tipo_maquinaria.tipo as tipo,bie_tipo_maquinaria.nombre_bien as nombre_bien,bie_tipo_maquinaria.codigo_alias as codigo_alias,bie_tipo_maquinaria.vida_util as vida_util,'' as kilometro,mno_gerencia.descripcion as nombre_departamento from bie_tipo_maquinaria
+inner join mno_gerencia on mno_gerencia.codigo = bie_tipo_maquinaria.codigo_departamento where bie_tipo_maquinaria.eliminado = 'n'
+)
+)as primera_consulta
+left join bie_asignaciones on primera_consulta.codigo  = bie_asignaciones.codigo_bien and  primera_consulta.tipo = bie_asignaciones.tipo_bien where bie_asignaciones.codigo_bien is null
+*/
+
+
+
