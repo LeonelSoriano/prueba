@@ -59,7 +59,7 @@ $a->chekear_session();
 								</nav> -->
 								<h1 id="header_nombre" style="display: table;margin-bottom: 12px"><a href="index.html"><img src="images/index.png" title="zSpaSalon" style="max-height: 130px"/></a>
                                    <div id="header_nombre_span" style=" display: table-cell;
-vertical-align: middle;">
+vertical-align: middle;"><a href="index.html"><img src="images/index2.png" title="zSpaSalon" style="max-height: 130px;float:right;"/></a>
 
                                 Bienvenido al SICAP <br/>Menú Principal
                             </div> </h1>
@@ -160,16 +160,7 @@ vertical-align: middle;">
 									</div>
                                     Es el conjunto de trámites que se llevan a cabo para resolver un asunto o concretar un proyecto. La gestión es también la dirección o administración de una compañía o de un negocio.
                                 </div>
-								<!--<div class="wrapper">-->
-									<!--<div class="col-2-5">-->
-									<!--<figure class="img-indent border"><a href="#"><img src="images/page1-img2.jpg" alt="" /></a></figure>-->
-									<!--</div>-->
-									<!--<div class="col-3-5 extra-wrap">-->
-										<!--<h4>Spa Aromatherapy</h4>-->
-										<!--Consectetur adipcing elsed eiusmod tempor incidint utabore dolore magna aliquat enim ad minim.-->
-									<!--</div>-->
-								<!--</div>-->
-							<!--</div>-->
+
 						</div></article>
 						<article class="col-1-4"><div class="wrap-col">
 							<h3>Marco Legal</h3>

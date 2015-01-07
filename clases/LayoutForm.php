@@ -88,7 +88,10 @@ class LayoutForm
 
                             <div   style=" display: table-cell;
 vertical-align: middle;line-height: 120px;font-size: 35px;">
-                               <a href="'.$this->pre_pend_path.'/seleccion_sicap.php" style="text-decoration: none">    <img src="'.$this->pre_pend_path.'/images/index.png" width="100px" style="vertical-align: top;"/> </a>  '.$this->title.'
+                               <a href="'.$this->pre_pend_path.'/seleccion_sicap.php" style="text-decoration: none">    <img src="'.$this->pre_pend_path.'/images/index.png"  style="vertical-align: top;max-height: 130px;"/> </a>
+                                 <a href="'.$this->pre_pend_path.'/seleccion_sicap.php" style="text-decoration: none">    <img src="'.$this->pre_pend_path.'/images/index2.png"  style="float:right;max-height: 130px;"/> </a>
+
+                                 '.$this->title.'
                             </div> </h1>
 
                         </div>
@@ -127,7 +130,8 @@ vertical-align: middle;line-height: 120px;font-size: 35px;">
     left: 0;
     bottom: 0;
 
-    width: 100%;" >
+    width: 100%;
+    Height: 180px" >
     <div class="main">
         <div class="zerogrid" id="mi_footer">
 

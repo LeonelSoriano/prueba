@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: leonel
+ * Date: 06/01/15
+ * Time: 12:15 PM
+ */
 
 include_once('clases/Seguridad.php');
 
@@ -6,9 +12,9 @@ $a = new Seguridad();
 
 $a->chekear_session();
 
-?>
+include("db.php");
+include_once('./clases/LayoutForm.php');
 
-<?php
 
 $cedulaempleado ="";
 $nombre="";
@@ -265,26 +271,11 @@ if (isset($_POST['ver_turnos']))
 }
 
 
-?>
+$layout = new LayoutForm('Módulo de Recursos Humanos | Turnos por Empleado','.');
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
 
-    <script src="js/htmlDatePicker.js" type="text/javascript"></script>
-    <link href="css/htmlDatePicker.css" rel="stylesheet">
-
-    <link href="css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="css/dropdown/themes/flickr.com/default.ultimate.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="./css/stylesheet.css" rel="stylesheet" type="text/css" />
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Leonel Soriano leonelsoriano3@gmail.com" />
-    <link href="./css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="./css/stylesheet.css" rel="stylesheet" type="text/css" />
-    <script src="./js/jquery-1.10.2.js"></script>
-
+$layout->append_to_header(
+    <<<EOT
     <script type="text/javascript">
 
         $(function() {
@@ -293,12 +284,12 @@ if (isset($_POST['ver_turnos']))
             $('#check_mensual').bind('change',function() {
 
 
-                var mes = $("#codigomes").val();
-                var anhio = $("#codigoanhio").val();
+                var mes = $('#codigomes').val();
+                var anhio = $('#codigoanhio').val();
 
                 var check_mensual = 'no';
 
-                if($("#check_mensual").is(':checked')) {
+                if($('#check_mensual').is(':checked')) {
                     check_mensual = 'si';
                 }
 
@@ -431,341 +422,170 @@ if (isset($_POST['ver_turnos']))
                 }
             });
 
+
+
         });
 
     </script>
+EOT
 
-    <!-- / END -->
-
-</head>
-
-
-<body class="flickr-com">
-<!--<p><a href="mrh_menu.html" class="main-site">Principal</a></p>-->
-<!--<h1><img src="images/seleccion_sicap_archivos/image002.jpg" alt="flickr" />Módulo de Recursos Humanos | Cargo</h1>-->
-<!-- Beginning of compulsory code below -->
-
-<form method="post"  name="turnoxempleado">
-<div id="body_bottom_bgd">
-<div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-<!--</div>-->                <!-- Menu -->
-<!--  ?php include 'include/nav.php'; ?>-->
-<div align="justify" id="right_col" >
-    <div id="header">
-    </div>
-    <div id="">
-        <div id="firefoxbug"><!-- firefoxbug -->
-            <!-- <div id="blue_line"></div>-->
-            <div class="dynamicContent" align="left">
-                <!--  <h1>Inicio</h1>-->
-                <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                <h1><img src="images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Recursos Humanos | Turnos por Empleado</strong></h1>
-                <br/>
+ );
 
 
-                <?php
+$layout->get_header();
 
-                if(isset($_GET['msg'])){
-                    $error =  $_GET['error'];
 
-                    $msg = $_GET['msg'];
+$anhio_form = '';
 
-                    if($error == 'true'){
-                        echo('<div id="error_app"><marquee scrolldelay="100">'.$msg.'</marquee></div>');
-                    }else if($error == 'false'){
-                        echo('<div id="done_app"><marquee scrolldelay="100">'.$msg.'</marquee></div>');
+ $anhio = date('Y');
 
-                    }
+$anhio_form .= ('<option value="'.($anhio -3).'">'.($anhio -3).'</option>');
+$anhio_form .=('<option value="'.($anhio -2).'">'.($anhio -2).'</option>');
+$anhio_form .= ('<option value="'.($anhio -1).'">'.($anhio -1).'</option>');
+$anhio_form .= ('<option value="'.($anhio).'"selected>'.($anhio).'</option>');
+$anhio_form .= ('<option value="'.($anhio + 1).'">'.($anhio + 1).'</option>');
 
-                }
 
-                ?>
-                <br/>
-                <TABLE BORDER="0" CELLSPACING="4" WIDTH="500">
+$mes_from = '';
 
-                    <TR>
-                        <TD width="173"><label>Cédula de Empleado</label></TD>
-                        <TD width="94">
-                            <input type="text" name="cedulaempleado" id="cedulaempleado" size="20" value=<?php echo $cedulaempleado ?>></TD>
-                        <TD>
-                            <!--<input type="submit" value="Buscar" name="submit">-->
-                            <input type="button" onClick="javascript: buscar_empleado()" name="buscar" value="Buscar" >
+
+$mes = date('n');
+
+if($mes == 1){
+    $mes_from .= (" <option value='1' selected>Enero</option>");
+}else{
+    $mes_from .= (" <option value='1' >Enero</option>");
+}
+if($mes == 2){
+    $mes_from .= (" <option value='2' selected>Febrero</option>");
+}else{
+    $mes_from .= (" <option value='2' >Febrero</option>");
+}
+if($mes == 3){
+    $mes_from .= (" <option value='3' selected>Marzo</option>");
+}else{
+    $mes_from .= (" <option value='3' >Marzo</option>");
+}
+if($mes == 4){
+    $mes_from .= (" <option value='4' selected>Abril</option>");
+}else{
+    $mes_from .= (" <option value='4' >Abril</option>");
+}
+if($mes == 5){
+    $mes_from .= (" <option value='5' selected>Mayo</option>");
+}else{
+    $mes_from .= (" <option value='5' >Mayo</option>");
+}
+if($mes == 6){
+    $mes_from .= (" <option value='6' selected>Junio</option>");
+}else{
+    $mes_from .= (" <option value='6' >Junio</option>");
+}
+if($mes == 7){
+    $mes_from .= (" <option value='7' selected>Julio</option>");
+}else{
+    $mes_from .= (" <option value='7' >Julio</option>");
+}
+if($mes == 8){
+    $mes_from .= (" <option value='8' selected>Agosto</option>");
+}else{
+    $mes_from .= (" <option value='8' >Agosto</option>");
+}
+if($mes == 9){
+    $mes_from .= (" <option value='9' selected>Septiembre</option>");
+}else{
+    $mes_from .= (" <option value='9' >Septiembre</option>");
+}
+if($mes == 10){
+    $mes_from .= (" <option value='10' selected>Octubre</option>");
+}else{
+    $mes_from .= (" <option value='10' >Octubre</option>");
+}
+if($mes == 11){
+    $mes_from .= (" <option value='11' selected>Noviembre</option>");
+}else{
+    $mes_from .= (" <option value='11' >Noviembre</option>");
+}
+if($mes == 12){
+    $mes_from .= (" <option value='12' selected>Diciembre</option>");
+}else{
+    $mes_from .= (" <option value='12' >Diciembre</option>");
+}
+
+
+
+
+
+
+$layout->set_form(
+
+    <<<EOT
+
+    <form id="contact-form" method="post" enctype="multipart/form-data" name="turnoxempleado">
+    <div class="formLayout">
+    <fieldset>
+
+            <label>Cédula de Empleado</label>
+<input type="text" name="cedulaempleado" id="cedulaempleado" size="20" value="$cedulaempleado" ?>
+<input type="button" onClick="javascript: buscar_empleado()" name="buscar" value="Buscar" >
                             <input type="hidden" name="codigo_hi" id="codigo_hi"/>
-                        </TD>
-                    </TR>
-
-                    <TR>
-                        <TD><label>Nombre</label></TD>
-                        <TD><input type="text" name="nombre" id="nombre" size="20" value=<?php echo($nombre) ?>></TD>
-                        <TD width="107"><label>Apellido</label></TD>
-                        <TD width="98"><input type="text" name="apellido" id="apellido" size="20" value=<?php echo($apellido); ?>></TD>
-                    </TR>
+<br/>
 
 
-                    <tr>
-                        <td><label for="">Mensual?</label></td>
-                        <td><input  type="checkbox" id="check_mensual"/></td>
-                    </tr>
+<script type="text/javascript">
+    function buscar_empleado(){
+        var win = window.open("turnosxempleados_buscarempleado.php", "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=900, height=600,left=200,top=90 ");
+        win.focus();
+    }
+    </script>
 
-                    <TR>
-                        <TD><label>Año</label></TD>
-                        <TD>
-                            <select name='anhio' id='codigoanhio' >
+<label>Nombre</label>
+<input type="text" name="nombre" id="nombre" size="20" value="$nombre">
+<br/>
+<label>Apellido</label>
+<input type="text" name="apellido" id="apellido" size="20" value="$apellido">
+<br/>
 
-                                <?php $anhio = date('Y');
-                                echo('<option value="'.($anhio -3).'">'.($anhio -3).'</option>');
-                                echo('<option value="'.($anhio -2).'">'.($anhio -2).'</option>');
-                                echo('<option value="'.($anhio -1).'">'.($anhio -1).'</option>');
-                                echo('<option value="'.($anhio).'"selected>'.($anhio).'</option>');
-                                echo('<option value="'.($anhio + 1).'">'.($anhio + 1).'</option>');
-                                ?>
-                            </select>
-                        </TD>
+<label >Mensual?</label>
+<input  type="checkbox" id="check_mensual"/><label for="checkbox3" style="float: left"><span></span></label>
+<br/>
 
+<label>Año</label>
 
-                    <TR>
-                        <TD><label>Mes</label></TD>
-                        <TD>
-                            <select name='codigomes' id='codigomes' >
-
-                                <?php
-
-                                $mes = date('n');
-
-                                if($mes == 1){
-                                    echo(" <option value='1' selected>Enero</option>");
-                                }else{
-                                    echo(" <option value='1' >Enero</option>");
-                                }
-                                if($mes == 2){
-                                    echo(" <option value='2' selected>Febrero</option>");
-                                }else{
-                                    echo(" <option value='2' >Febrero</option>");
-                                }
-                                if($mes == 3){
-                                    echo(" <option value='3' selected>Marzo</option>");
-                                }else{
-                                    echo(" <option value='3' >Marzo</option>");
-                                }
-                                if($mes == 4){
-                                    echo(" <option value='4' selected>Abril</option>");
-                                }else{
-                                    echo(" <option value='4' >Abril</option>");
-                                }
-                                if($mes == 5){
-                                    echo(" <option value='5' selected>Mayo</option>");
-                                }else{
-                                    echo(" <option value='5' >Mayo</option>");
-                                }
-                                if($mes == 6){
-                                    echo(" <option value='6' selected>Junio</option>");
-                                }else{
-                                    echo(" <option value='6' >Junio</option>");
-                                }
-                                if($mes == 7){
-                                    echo(" <option value='7' selected>Julio</option>");
-                                }else{
-                                    echo(" <option value='7' >Julio</option>");
-                                }
-                                if($mes == 8){
-                                    echo(" <option value='8' selected>Agosto</option>");
-                                }else{
-                                    echo(" <option value='8' >Agosto</option>");
-                                }
-                                if($mes == 9){
-                                    echo(" <option value='9' selected>Septiembre</option>");
-                                }else{
-                                    echo(" <option value='9' >Septiembre</option>");
-                                }
-                                if($mes == 10){
-                                    echo(" <option value='10' selected>Octubre</option>");
-                                }else{
-                                    echo(" <option value='10' >Octubre</option>");
-                                }
-                                if($mes == 11){
-                                    echo(" <option value='11' selected>Noviembre</option>");
-                                }else{
-                                    echo(" <option value='11' >Noviembre</option>");
-                                }
-                                if($mes == 12){
-                                    echo(" <option value='12' selected>Diciembre</option>");
-                                }else{
-                                    echo(" <option value='12' >Diciembre</option>");
-                                }
-
-                                ?>
-
-                            </select>
-                        </TD>
+<select name='anhio' id='codigoanhio' >
 
 
+$anhio_form
 
-                    </TR>
+ </select>
 
 
-
-
-                    <!--    <table border="1" width="100">-->
-                    <!--    <TR>-->
-                    <!--          <TD><label>Seleccione Turno</label></TD>-->
-                    <!--            --><?php //// consulta de los meses
-                    //             // Consultar la base de datos
-                    //
-                    //                $consulta_mysql='select * from mrh_turnos';
-                    //                $resultado_consulta_mysql=mysql_query($consulta_mysql);
-                    //                echo "<TD>";
-                    //                echo "<select name='codigoturno' id='codigoturno' size='10'>";
-                    //                    while($fila=mysql_fetch_array($resultado_consulta_mysql)){
-                    //                        echo "<option value='".$fila['codigo']."'>".$fila['descripcion'].'-'.$fila['horaentrada'].'-'.$fila['horasalida']."</option>";
-                    //                    }
-                    //                echo "</select>";
-                    //                echo "</TD>";
-                    //             ?>
-                    <!--    </TR>-->
-                    <!--    </table>-->
-
-                </TABLE>
+ </br>
+ <label>Mes</label>
+ <select name='codigomes' id='codigomes' >
+$mes_from
+ </select>
+ <br/>
 
 
                 <div id="respuesta">
 
                 </div>
 
-                <TABLE>
-                    <TR>
-                        <TD>
-                            <a><input type="Submit" name="ver_turnos" value="Ver Datos"></a>
-                        </TD>
-                        <TD>
-                            <!--<input type="button" onClick="javascript: insertar()" name="asignar" value="Asignar Turno" >-->
-                            <a><input type="Submit" name="submit" value="Asignar Turno"></a>
-                        </TD>
-                        <TD>
-                            <a href="mrh_menu.php"><input type="button" value="Atras"></a>
-                        </TD>
-                    </TR>
-                </TABLE>
-                <!-- / END -->
-                <p></p>
-            </div>
-        </div><!--end firefoxbug-->
-    </div><!--end left_bgd-->
 
-</div>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>
-    <!--end right_col-->
-</p>
-<p>&nbsp; </p>
-<div class="clearboth"></div>
-</div>
-<div align="center" class="pie">SICAP 2014</div>
-</div>
-</form>
-</body>
-</html>
+ <br/>
+   <a><input type="Submit" name="ver_turnos" value="Ver Datos"></a>
+   <a><input type="Submit" name="submit" value="Asignar Turno"></a>
+   <a href="mrh_menu.php"><input type="button" value="Atras"></a>
 
-<script type="text/javascript">
-    //EVENTOS EN javascript
-
-    //function objetoAjax(){
-    //	var xmlhttp=false;
-    //	try {
-    //		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-    //	} catch (e) {
-    //
-    //	try {
-    //		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    //	} catch (E) {
-    //		xmlhttp = false;
-    //	}
-    //}
-    //
-    //if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
-    //	  xmlhttp = new XMLHttpRequest();
-    //	}
-    //	return xmlhttp;
-    //}
-    //
-    ///*function insertar(){
-    //
-    //	divResultado = document.getElementById('resultado');
-    //
-    //	var	cedulaempleado = document.getElementById("cedulaempleado").value;
-    //	var	codigomes = document.getElementById("mes").value;
-    //        var	codigosemana = document.getElementById("semana").value;
-    //        var	codigoturno = document.getElementById("turno").value;
-    //
-    //  	alert(codigosemana);
-    //	exit;
-    //
-    //	ajax=objetoAjax();
-    //	ajax.open("POST", "turnosxempleado_insertar.php",true);
-    //
-    //	ajax.onreadystatechange=function() {
-    //  	if (ajax.readyState==4) {
-    //		divResultado.innerHTML = ajax.responseText
-    //	}
-    // }
-    //
-    //        ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    //	trama="cedulaempleado="+cedulaempleado+
-    //                "&codigomes="+codigomes+
-    //                    "&codigosemana="+codigosemana+
-    //                        "&codigoturno="+codigoturno;
-    //        //alert(trama);
-    //        //exit;
-    //        ajax.send(trama);
-    //
-    //	alert('Registro Guardado');
-    //
-    //
-    //}*/
-
-    function buscar_empleado(){
-        var win = window.open("turnosxempleados_buscarempleado.php", "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=900, height=600,left=200,top=90 ");
-        win.focus();
-    }
+             </div>
+        </fieldset>
+    </form>
 
 
-    //function cargasemana(str)
-    //	{
-    //		if (str=="")
-    //		{
-    //			document.getElementById("codigomes").innerHTML="";
-    //			return;
-    //
-    //			}
-    //
-    //		if (window.XMLHttpRequest)
-    //		{// code for IE7+, Firefox, Chrome, Opera, Safari
-    //			xmlhttp=new XMLHttpRequest();
-    //
-    //			}
-    //			else
-    //			{// code for IE6, IE5
-    //				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    //
-    //				}
-    //
-    //		xmlhttp.onreadystatechange=function()
-    //		{
-    //			if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    //			{
-    //				document.getElementById("codigosemana").innerHTML=xmlhttp.responseText;
-    //
-    //				}
-    //
-    //			}
-    //		xmlhttp.open("GET","semana.php?codigomes="+str,true);
-    //
-    //		xmlhttp.send();
-    //	}
-</script>
+
+EOT
+
+);
+
+$layout->get_footer();

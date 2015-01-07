@@ -34,13 +34,13 @@ if($check_mensual == 'no'){
 
 
 for($i = 0;$i < $semanas;$i++){
-    echo("
-        <td>
-            <label style='white-space: nowrap'>Semana ".($i +1)."</label>
-        </td>
-        <td>
+    echo("</br>
 
-            <select name='codigoturno".($i+1)."' id='codigoturno' style='height: 25px'>");
+            <label >Semana ".($i +1)."</label>
+
+
+
+            <select name='codigoturno".($i+1)."' id='codigoturno' >");
 
 
     $consulta_mysql='select * from mrh_turnos';
@@ -49,9 +49,9 @@ for($i = 0;$i < $semanas;$i++){
         echo "<option value='".$fila['codigo']."'>".$fila['descripcion'].'-'.$fila['horaentrada'].'-'.$fila['horasalida']."</option>";
     }
 
-    echo('</select>
+    echo('</select></br>
 
-</td>
+
 ');
 }
 
@@ -63,12 +63,11 @@ if($check_mensual == 'si'){
 
 
     echo("
-        <td>
-            <label style='white-space: nowrap'>Semana</label>
-        </td>
-        <td>
 
-            <select name='codigoturno' id='codigoturno' style='height: 25px'>");
+            <label style='white-space: nowrap'>Semana</label>
+
+
+            <select name='codigoturno' id='codigoturno' >");
 
 
     $consulta_mysql='select * from mrh_turnos';
@@ -79,7 +78,7 @@ if($check_mensual == 'si'){
 
     echo('</select>
 
-</td>
+
 ');
 
 

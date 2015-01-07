@@ -1,6 +1,26 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: leonel
+ * Date: 06/01/15
+ * Time: 02:46 PM
+ */
+
+
+header("Content-Type: text/html;charset=utf-8");
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
+
+include_once('../../clases/Seguridad.php');
+
+$a = new Seguridad();
+
+$a->chekear_session();
+
+include("../../db.php");
+include_once('../../clases/LayoutForm.php');
+
+$layout = new LayoutForm('Módulo de Nómina | Creación de Deaprtamentos');
 
 $guardado = 0;
 include_once("../../db.php");
@@ -117,174 +137,91 @@ if(isset($_GET['codigo'])){
 
 }
 
-?>
 
 
 
+$layout->append_to_header('
+ <script>
+    $(function() {
 
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../../css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-    <script src="../../js/jquery-1.10.2.js"></script>
-    <script src="../../js/jquery-ui-1.10.4.custom.js"></script>
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/sicap/resources/demos/style.css">
-
-    <script>
-        $(function() {
-
-            $( "#buscar_dependiente" ).click(function() {
-                var win = window.open("dependiente.php", "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=900, height=600,left=200,top=90");
-                win.focus();
-            });
-
+        $( "#buscar_dependiente" ).click(function() {
+            var win = window.open("dependiente.php", "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=900, height=600,left=200,top=90");
+            win.focus();
         });
-    </script>
-    <!-- Beginning of compulsory code below -->
 
-    <link href="/sicap/css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/sicap/css/dropdown/themes/flickr.com/default.ultimate.css" media="screen" rel="stylesheet" type="text/css" />
-
-    <!-- / END -->
-
-</head>
-<body class="flickr-com">
-
-<p>&nbsp;</p>
-<!-- Beginning of compulsory code below -->
-
-<div id="body_bottom_bgd">
-    <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-        <!--</div>-->                <!-- Menu -->
-        <!--  ?php include 'include/nav.php'; ?>-->
-        <div align="justify" id="right_col" >
+    });
+</script>
+ ');
 
 
-            <div id="header">
-            </div>
-            <div id="">
-                <div id="firefoxbug"><!-- firefoxbug -->
-                    <!-- <div id="blue_line"></div>-->
-                    <div class="dynamicContent" align="left">
-                        <!--  <h1>Inicio</h1>-->
-                        <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
+$layout->get_header();
 
-                        <h1><img src="/sicap/images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Nómina | Gerencia</strong></h1>
+$check_frm = '';
+if($etapa == 'si'){$check_frm = 'checked';}
 
+$productiva_form = '';
+if($unidad_admnistrativa == 'productiva'){ $productiva_form = 'selected';}
 
-                        <br/>
+$operativa_venta_from = '';
+if($unidad_admnistrativa == 'operativa_venta'){ $operativa_venta_from = 'selected';}
 
-                        <?php
+$operativa_administrativo_from = '';
+if($unidad_admnistrativa == 'operativa_administrativo'){ $operativa_administrativo = 'selected';}
 
-                        if(isset($_GET['msg'])){
-                            $error =  $_GET['error'];
+$unidad_admnistrativa_from = '';
+if($unidad_admnistrativa == 'apoyo'){ $unidad_admnistrativa_from = 'selected';}
 
-                            $msg = $_GET['msg'];
+$layout->set_form(
 
-                            if($error == 'true'){
-                                echo('<div id="error_app"><marquee scrolldelay="100">'.$msg.'</marquee></div>');
-                            }else if($error == 'false'){
-                                echo('<div id="done_app"><marquee scrolldelay="100">'.$msg.'</marquee></div>');
-
-                            }
-
-                        }
-
-                        ?>
-                        <br/>
+    <<<EOT
+    <form method="post" accept-charset="UTF-8" name="gerencia"  id="contact-form">
+    <div class="formLayout">
+    <fieldset>
 
 
-                        <form method="post" name="gerencia">
-                            <TABLE BORDER="0" CELLSPACING="4" WIDTH="500">
+<label>Código</label>
+<input type="text" name="codigoalias" id="codigoalias" value="$codigo_alias">
+<br/>
 
-                                <TR>
-                                    <TD><label>Código</label></TD>
-                                    <TD><p><input type="text" name="codigoalias" id="codigoalias" size="21" value="<?php echo($codigo_alias); ?>"></p></TD>
-                                </TR>
-                                <TR>
-                                    <TD><label>Descripción</label></TD>
-                                    <TD><p><input type="text" name="descripcion" id="descripcion" size="21" value="<?php echo($descripcion); ?>"></p></TD>
-                                </TR>
+<label>Descripción</label>
+<input type="text" name="descripcion" id="descripcion" value="$descripcion">
+<br/>
 
+<label>Dependiente</label>
+<input type="text" name="dependiente" id="dependiente" disabled value="$nombre_depende">
+<input type="button" name="buscar_dependiente" id="buscar_dependiente" value="Buscar" >
+<br/>
 
-                                <TR>
-                                    <TD width="173"><label>Dependiente</label></TD>
-                                    <TD width="94">
-                                        <input type="text" name="dependiente" id="dependiente" size="21" value="<?php echo($nombre_depende); ?>"  disabled></TD>
-                                    <TD>
-                                        &nbsp;
-                                        <input type="button" name="buscar_dependiente" id="buscar_dependiente" value="Buscar" >
-                                    </TD>
-                                </TR>
+<label>Es Etapa?</label>
+<input type="checkbox" name="etapa" $check_frm/><label style="float: left"><span></span></label>
+<br/>
 
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
+<label>Unidad Administrativa</label>
 
-                                    <td><label>Es Etapa?</label></td>
-                                    <td><input type="checkbox" name="etapa"  <?php if($etapa == 'si'){echo('checked');} ?>/></td>
-                                </tr>
+<select name="unidad" id="unidad">
+    <option value="productiva" $productiva_form>Productiva</option>
+    <option value="operativa_venta" $operativa_venta_from>Operativa(Venta)</option>
+    <option value="operativa_administrativo" $operativa_administrativo_from>Operativa(Administrativo)</option>
+    <option value="apoyo" $unidad_admnistrativa_from>Apoyo</option>
+</select>
+<br/>
 
-                                <tr></tr>
-                                <tr>
-                                    <td><label>Unidad Administrativa</label></td>
-                                    <td>
-                                        <select name="unidad" id="unidad">
-                                            <option value="productiva"  <?php  if($unidad_admnistrativa == 'productiva'){ echo('selected');} ?>>Productiva</option>
-                                            <option value="operativa_venta" <?php  if($unidad_admnistrativa == 'operativa_venta'){ echo('selected');} ?>>Operativa(Venta)</option>
-                                            <option value="operativa_administrativo" <?php  if($unidad_admnistrativa == 'operativa_administrativo'){ echo('selected');} ?>>Operativa(Administrativo)</option>
-                                            <option value="apoyo" <?php  if($unidad_admnistrativa == 'apoyo'){ echo('selected');} ?>>Apoyo</option>
-                                        </select>
-                                    </td>
-                                </tr>
+        <input type="hidden" name="dependiente_hi"  id="dependiente_hi" value="$codigo"/>
+        <input type="hidden" name="dependiente_nombre_hi"  id="dependiente_nombre_hi" value="$codigo_depende"/>
+        <input type="hidden" name="dependiente_nombre_hi"  id="dependiente_nombre_hi" value="$nombre_depende"/>
 
 
-                                <input type="hidden" name="id" value="<?php echo($codigo); ?>"/>
-                                <input type="hidden" name="dependiente_hi"  id="dependiente_hi" value="<?php echo($codigo_depende); ?>"/>
-                                <input type="hidden" name="dependiente_nombre_hi"  id="dependiente_nombre_hi" value="<?php echo($nombre_depende); ?>"/>
+<input type="submit" value="Guardar datos" name="submit">
+<a href="gerencia_ver.php"><input type="button" value="Ver datos">
+<a href="../../mno_menu2.php"><input type="button" value="Atras">
 
-                            </TABLE>
-                            <br/>
-                            <table>
-                                <tr>
-                                    <td><input type="submit" value="Guardar datos" name="submit"></td>
-                                    <td><a href="gerencia_ver.php"><input type="button" value="Ver datos"></a></td>
-                                    <td><a href="../../mno_menu.html"><input type="button" value="Atras"></a></td>
-                                </tr>
-                            </table>
 
-                        </form>
-                        <!-- / END -->
-                        <p></p>
-                    </div>
-                </div><!--end firefoxbug-->
-            </div><!--end left_bgd-->
-
-        </div>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>
-            <!--end right_col-->
-        </p>
-        <p>&nbsp; </p>
-        <div class="clearboth"></div>
     </div>
-    <div align="center" class="pie">SICAP 2014</div>
-</div>
+    </fieldset>
+    </form>
+EOT
 
+);
 
+$layout->get_footer();
 
-
-</body>
-</html>

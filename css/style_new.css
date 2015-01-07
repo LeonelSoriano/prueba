@@ -229,6 +229,13 @@ dl dd {font-size:13px}
 #contact-form {display:block;}
 	#contact-form label {display:block;height:31px;margin-top: 10px}
 	#contact-form input[type=text] {float:left;width:50%;font-size:13px;line-height:1.23em;color:#4f4f4f;padding:4px 10px;margin:0;font-family:Arial, Helvetica, sans-serif;border:1px solid #e5e5e5;background:none}
+#contact-form input[type=text]:disabled{
+    background : -moz-linear-gradient(top,  rgba(156,206,235,.2)  0%, rgba(13,177,189,.2) 100%);
+    background : -webkit-linear-gradient(top,   rgba(156,206,235,.2) 0%, rgba(13,177,189,.2) 100%);
+    background : -o-linear-gradient(top,   rgba(156,206,235,.2) 0%, rgba(13,177,189,.2) 100%);
+    background : -ms-linear-gradient(top,  rgba(156,206,235,.2) 0%, rgba(13,177,189,.2) 100%);
+    background : linear-gradient(top,  rgba(156,206,235,.2) 0%, rgba(13,177,189,.2) 100%);
+}
 
 
 .text-form {float:left;display:block;font-size:14px;line-height:26px;width:112px;color:#4f4f4f;font-family:Arial, Helvetica, sans-serif}

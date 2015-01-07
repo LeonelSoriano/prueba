@@ -185,12 +185,12 @@ $layout->get_header();
 $layout->set_form(
 
     '
-                                <form id="contact-form" method="post" enctype="multipart/form-data">
-                                <div class="formLayout">
-                                <fieldset>
+            <form id="contact-form" method="post" enctype="multipart/form-data">
+            <div class="formLayout">
+            <fieldset>
 
                            <label>Cédula (*)</label>
-                            <input type="text" name="cedula" id="cedula" size="20">
+                            <input type="text" name="cedula" id="cedula" >
 
 <br/>
 
@@ -230,7 +230,7 @@ $layout->set_form(
 			<br/>
 
             <label>Primer Nombre(*)</label>
-			<input type="text" name="primernombre" id="primernombre" size="20">
+			<input type="text" name="primernombre" id="primernombre" >
 			<br/>
 
 			<label>Segundo Nombre(*)</label>

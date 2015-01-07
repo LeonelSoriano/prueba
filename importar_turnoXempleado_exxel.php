@@ -59,6 +59,11 @@ for($i = 4 ; $i < count($numerical);$i++){
 
     $codigomes = $numerical[1]['B'];
 
+    if($codigomes < 10){
+        $codigomes .= '0' . $codigomes;
+    }
+
+
     $anhio = $numerical[1]['A'];
 
 
