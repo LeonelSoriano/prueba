@@ -1,6 +1,6 @@
 <?php  
 error_reporting(E_ALL ^ E_DEPRECATED);
-	$conn = mysql_connect('localhost', 'root', '123456');
+	$conn = mysql_connect('0.0.0.0', 'leonel', '');
 	 if (!$conn)
     {
 	 die('Could not connect: ' . mysql_error());
