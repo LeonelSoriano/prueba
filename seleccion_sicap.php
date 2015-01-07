@@ -59,10 +59,10 @@ $a->chekear_session();
 								</nav> -->
 								<h1 id="header_nombre" style="display: table;margin-bottom: 12px"><a href="index.html"><img src="images/index.png" title="zSpaSalon" style="max-height: 130px"/></a>
                                    <div id="header_nombre_span" style=" display: table-cell;
-vertical-align: middle;"><a href="index.html"><img src="images/index2.png" title="zSpaSalon" style="max-height: 130px;float:right;"/></a>
+vertical-align: middle;">
 
                                 Bienvenido al SICAP <br/>Menú Principal
-                            </div> </h1>
+                            </div> <a href="index.html"><img src="images/index2.png" title="zSpaSalon" style="max-height: 130px;float:right;"/></a></h1>
 
 								<div id="mis_iconos" >
 
