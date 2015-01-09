@@ -1,14 +1,24 @@
 <?php
-
-header("Content-Type: text/html;charset=utf-8");
+/**
+ * Created by PhpStorm.
+ * User: leonel
+ * Date: 08/01/15
+ * Time: 02:38 PM
+ */
+ 
+ header("Content-Type: text/html;charset=utf-8");
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
 
-require_once ('../../db.php');
+include_once('../../db.php');
 
-?>
+include_once('../../clases/Seguridad.php');
 
-<?php
+
+
+$a = new Seguridad();
+
+$a->chekear_session();
 
 
 $id =$_REQUEST['codigo'];
@@ -55,24 +65,15 @@ if (isset($_POST['submit'])){
 
 
 
-?>
+
+include_once('../../clases/LayoutForm.php');
+
+$layout = new LayoutForm('Módulo de Configuración | Reabrir Orden');
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Tomas Bagdanavicius, http://www.lwis.net/free-css-drop-down-menu/" />
-    <meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
-    <meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <script src="../../js/htmlDatePicker.js" type="text/javascript"></script>
-    <link href="../../css/htmlDatePicker.css" rel="stylesheet">
-    <!-- Beginning of compulsory code below -->
-    <link href="/sicap/css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/sicap/css/dropdown/themes/flickr.com/default.ultimate.css" media="screen" rel="stylesheet" type="text/css" />
 
+$layout->append_to_header(
+    <<<EOT
     <script>
         $(function() {
             $( "#datepicker1" ).datepicker({ dateFormat: 'yy-mm-dd' });
@@ -80,128 +81,55 @@ if (isset($_POST['submit'])){
             $( "#datepicker3" ).datepicker({ dateFormat: 'yy-mm-dd' });
         });
     </script>
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
+EOT
+);
+
+$layout->get_header();
 
 
-    <!-- Beginning of compulsory code below -->
+$layout->set_form(
 
-</head>
+    <<<EOT
+ 
+     <form method="post" accept-charset="UTF-8" id="contact-form">
+    <div class="formLayout">
+    <fieldset>
 
+ <label>Nombre</label>
+ <input type="text" name="codigoalias"   value="$codigoalias"/>
+ <br/>
 
-<body class="flickr-com">
-<!--<p><a href="mrh_menu.html" class="main-site">Principal</a></p>-->
-<!--<h1><img src="images/seleccion_sicap_archivos/image002.jpg" alt="flickr" />Módulo de Recursos Humanos | Cargo</h1>-->
-<!-- Beginning of compulsory code below -->
+ <label>Código</label>
+<input type="text" name="rif"  value="$rif"/>
+<br/>
 
-<form method="post" accept-charset="UTF-8">
+<label>Descripción</label>
+<textarea rows="4" cols="49" name="descripcion" >$descripcion</textarea>
+<br/>
 
-    <div id="body_bottom_bgd">
-        <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-            <!--</div>-->                <!-- Menu -->
-            <!--  ?php include 'include/nav.php'; ?>-->
-            <div align="justify" id="right_col" >
-                <div id="header">
-                </div>
-                <div id="">
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
-                            <!--  <h1>Inicio</h1>-->
-                            <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Inventario | Empresa</strong></h1>
+<label >Correo Eectrónico</label>
+<input type="text" name="correo"  value="$correo"/>
+<br/>
 
-                            <TABLE BORDER="0" CELLSPACING="4" WIDTH="380">
-                                <tr>
-                                    <td><label>Nombre</label></td>
-                                    <TD><p><input type="text" name="codigoalias"  size="20" value="<?php echo($codigoalias) ?>"/></p></TD>
-                                </tr>
+<label >Dirección</label>
+<input type="text" name="direccion"  value="$direccion"/>
+<br/>
 
-                                <tr>
-                                    <td><label>Código</label></td>
-                                    <TD><p><input type="text" name="rif"  size="20"  value="<?php echo($rif) ?>"/></p></TD>
-                                </tr>
+<label >Teléfono</label>
+<input type="text" name="telefono"  value="$telefono"/>
+<br/>
 
+<input type="submit" value="Guardar datos" name="submit">
+<a href="empresa_ver.php"><input type="button" value="Ver datos"></a>
+<a href="empresa_ver.php"><input type="button" value="Atras"></a>
 
-                                <TR>
-                                    <td><label>Descripción</label></td>
-                                    <td><p><textarea rows="4" cols="18" name="descripcion" ><?php echo($descripcion) ?></textarea></p></td>
-                                </TR>
+ 
+     </div>
+    </fieldset>
+    </form>
+EOT
 
-                                <tr>
-                                    <td><label >Correo Eectrónico</label></td>
-                                    <td><p><input type="text" name="correo"  size="20"  value="<?php echo($correo) ?>"/></p></td>
-                                </tr>
-                                <br/>
-                                <tr>
-                                    <td><label >Dirección</label></td>
-                                    <td><p><input type="text" name="direccion"  value="<?php echo($direccion) ?>"/></p></td>
-                                </tr>
+);
 
-                                <tr>
-                                    <td><label >Teléfono</label></td>
-                                    <td><p><input type="text" name="telefono"  value="<?php echo($telefono) ?>"/></p></td>
-                                </tr>
-                            </TABLE>
-
-                            <br/>
-                            <table>
-                                <tr>
-                                    <td><input type="submit" value="Guardar datos" name="submit"></td>
-                                    <td><a href="empresa_ver.php"><input type="button" value="Ver datos"></a> </td>
-                                    <td><a href="empresa_ver.php"><input type="button" value="Atras"></a> </td>
-
-                                </tr>
-                            </table>
-                            <!-- / END -->
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
-
-            </div>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
-    </div>
-
-
-
-
-</form>
-
-</body>
-</html>
-
-
-
-<!--  guardado este codigo q lo colocare en configuracino -->
-<?php
-
-/*<label>Tipo de Empresa</label><br/>
-    <div style="margin-left: 135px">
-
-
-       <?php
-       $result = mysql_query("SET NAMES utf8");
-        $result=mysql_query("SELECT tipo FROM min_tipo_empresa");
-        while($test = mysql_fetch_array($result)){
-
-            echo "<p><input type='checkbox' name='tipo[]' value='". utf8_encode($test['tipo']) . "'/>&nbsp;&nbsp;&nbsp;&nbsp;" .utf8_encode($test['tipo']) ."</p>";
-
-        }
-
-*/
-?>
-
+$layout->get_footer();
+mysql_close($conn);

@@ -2,19 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: leonel
- * Date: 16/10/14
- * Time: 10:33 AM
+ * Date: 08/01/15
+ * Time: 08:51 AM
  */
-?>
-
-<?php
-
-header("Content-Type: text/html;charset=utf-8");
+ 
+ header("Content-Type: text/html;charset=utf-8");
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
 
-require_once('../../db.php');
+include_once('../../db.php');
 
+include_once('../../clases/Seguridad.php');
+
+
+
+$a = new Seguridad();
+
+$a->chekear_session();
 
 
 if(isset($_POST['submit'])){
@@ -79,20 +83,14 @@ if(isset($_POST['submit'])){
 }
 
 
+include_once('../../clases/LayoutForm.php');
 
-?>
+$layout = new LayoutForm('Módulo de Inventario | Monto Variable');
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Leonel Soriano leonelsoriano3@gmail.com" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-    <script src="../../js/jquery-1.10.2.js"></script>
 
+$layout->append_to_header(
+    <<<EOT
     <script type="text/javascript">
 
         $(function() {
@@ -105,136 +103,59 @@ if(isset($_POST['submit'])){
         });
 
     </script>
+EOT
+);
 
-</head>
-
-
-<body class="flickr-com">
-
-
-<form method="post" accept-charset="UTF-8" name="formulario">
-
-    <div id="body_bottom_bgd">
-        <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-            <!--</div>-->                <!-- Menu -->
-            <!--  ?php include 'include/nav.php'; ?>-->
-            <div align="justify" id="right_col" >
-
-                <div id="header">
-                </div>
-
-                <div id="">
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
-                            <!--  <h1>Inicio</h1>-->
-                            <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Inventario | Empresa</strong></h1>
-                            <br/>
-
-                            <?php
-
-                            if(isset($_GET['msg'])){
-                                $error =  $_GET['error'];
-
-                                $msg = $_GET['msg'];
-
-                                if($error == 'true'){
-                                    echo('<div id="error_app"><marquee scrolldelay="100">'.$msg.'</marquee></div>');
-                                }else if($error == 'false'){
-                                    echo('<div id="done_app"><marquee scrolldelay="100">'.$msg.'</marquee></div>');
-
-                                }
-
-                            }
-
-                            ?>
-
-                            <br/>
-                            <TABLE BORDER="0" CELLSPACING="10" >
-
-                                <tr>
-                                    <td><label>Empleado (*)</label></td>
-                                    <td>
-                                        <input type="text" name="cedula"  disabled>
-                                        <input type="button" name="buscar_empleado" id="buscar_empleado" value="Buscar"/>
-
-                                    </td>
-                                    <input type="hidden" name="codigo_empleado_hi" id="codigo_empleado_hi"/>
-                                </tr>
+$layout->get_header();
 
 
-                                <tr>
-                                    <td>
-                                        <label>Periocidad</label>
-                                    </td>
-                                    <td>
-                                        <select name="periocidad" id="periocidad">
-                                            <option value="7" >Semanal</option>
-                                            <option value="0" >Quinceal</option>
-                                            <option value="1" >Mensual</option>
-                                            <option value="2">Bimestral</option>
-                                            <option value="3">Trimestral</option>
-                                            <option value="4">Cuatrmestral</option>
-                                            <option value="5">Semestral</option>
-                                            <option value="6">Anual</option>
-                                        </select>
-                                    </td>
-                                </tr>
+$layout->set_form(
+
+    <<<EOT
+ 
+     <form method="post" accept-charset="UTF-8" name="formulario"  id="contact-form">
+    <div class="formLayout">
+    <fieldset>
+ 
+ <label>Empleado (*)</label>
+ <input type="text" name="cedula"  disabled>
+ <input type="button" name="buscar_empleado" id="buscar_empleado" value="Buscar"/>
+<input type="hidden" name="codigo_empleado_hi" id="codigo_empleado_hi"/>
+<br/>
+
+<label>Periocidad</label>
+
+   <select name="periocidad" id="periocidad">
+    <option value="7" >Semanal</option>
+    <option value="0" >Quinceal</option>
+    <option value="1" >Mensual</option>
+    <option value="2">Bimestral</option>
+    <option value="3">Trimestral</option>
+    <option value="4">Cuatrmestral</option>
+    <option value="5">Semestral</option>
+    <option value="6">Anual</option>
+</select>
 
 
+<br/>
 
-                                <tr>
-                                    <td><label > Valor </label></td>
-                                    <td>
-                                        <input type="text" name="valor"/>
+<label > Valor </label>
+<input type="text" name="valor"/>
 
+<br/>
 
-                                    </td>
-                                </tr>
-
-
-                                <!-- leonel -->
-
-
-                            </TABLE>
-
-                            <br/>
-                            <table>
-                                <tr>
-                                    <td><input type="submit" value="Guardar datos" name="submit"></td>
-                                    <td><a href="../../mco_menu.php"><input type="button" value="Atras"></a> </td>
-
-                                </tr>
-                            </table>
-                            <!-- / END -->
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
-
-            </div>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
-    </div>
+<input type="submit" value="Guardar datos" name="submit">
+<a href="../../mco_menu.php"><input type="button" value="Atras"></a>
 
 
 
 
-</form>
+     </div>
+    </fieldset>
+    </form>
+EOT
 
-</body>
-</html>
+);
+
+$layout->get_footer();
+mysql_close($conn);

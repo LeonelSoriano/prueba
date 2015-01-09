@@ -145,12 +145,14 @@ while($test = mysql_fetch_array($result)){
     $id =  $test['codigo'];
     $nombre = $test['nombre'];
 
+    $indice += 1;
 
-    $chekboses .=  '<label>'.$nombre.'</label>';
 
-    $chekboses .= '<input type="checkbox" name="'.$id.'" checked/>';
+    //$chekboses .=  '<label>'.$nombre.'</label>';
 
-    $chekboses .= '<br/>';
+    $chekboses .= ('<div style="width: 30%"><labe style="float: left">'.$nombre.'</labe><input style="float: right"  type="checkbox" name="'.$id.'" checked/><span></span></div></br></br>');
+
+
 
 }
 
@@ -186,17 +188,18 @@ $anhio_from
  </select>
  <br/>
 
-<label>hola</label>
-<div style="display: inline">
-                                    <label  >Apoyo</label><input id="checkbox3" type="checkbox" name="checkbox" value="3"><label for="checkbox3"><span></span></label>
-                                    <label  >Apoyo</label><input id="checkbox3" type="checkbox" name="checkbox" value="3"><label for="checkbox3"><span></span></label>
+$chekboses
 
-    <label  >Apoyo</label><input id="checkbox3" type="checkbox" name="checkbox" value="3"><label for="checkbox3"><span></span></label>
-</div>
+<br/>
+
+<input type="submit" value="Generar Reporte" name="submit">
+<a href="../../bie_menu.php"><input type="button" value="Atras"></a>
 
     </div>
     </fieldset>
+
     </form>
+
 EOT
 
 );

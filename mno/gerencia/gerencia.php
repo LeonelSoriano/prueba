@@ -9,6 +9,7 @@ header("Content-Type: text/html;charset=utf-8");
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
 
+
 include_once('../../clases/Seguridad.php');
 
 $a = new Seguridad();

@@ -2,17 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: leonel
- * Date: 02/10/14
- * Time: 05:53 PM
+ * Date: 08/01/15
+ * Time: 10:08 AM
  */
-
-
-header("Content-Type: text/html;charset=utf-8");
+ 
+ header("Content-Type: text/html;charset=utf-8");
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
 
-require_once('../../db.php');
+include_once('../../db.php');
 
+include_once('../../clases/Seguridad.php');
+
+
+
+$a = new Seguridad();
+
+$a->chekear_session();
 
 
 if(isset($_POST['submit'])){
@@ -83,19 +89,15 @@ if(isset($_POST['submit'])){
 
 
 
-?>
+
+include_once('../../clases/LayoutForm.php');
+
+$layout = new LayoutForm('Módulo de Configuración | Reabrir Orden');
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Leonel Soriano leonelsoriano3@gmail.com" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-    <script src="../../js/jquery-1.10.2.js"></script>
 
+$layout->append_to_header(
+    <<<EOT
     <script type="text/javascript">
 
         $(function() {
@@ -108,150 +110,70 @@ if(isset($_POST['submit'])){
         });
 
     </script>
+EOT
+);
 
-</head>
-
-
-<body class="flickr-com">
-
-
-<form method="post" accept-charset="UTF-8" name="formulario">
-
-    <div id="body_bottom_bgd">
-        <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-            <!--</div>-->                <!-- Menu -->
-            <!--  ?php include 'include/nav.php'; ?>-->
-            <div align="justify" id="right_col" >
-
-                <div id="header">
-                </div>
-
-                <div id="">
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
-                            <!--  <h1>Inicio</h1>-->
-                            <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Nomina | Nuevo Bonos de Producción</strong></h1>
-                            <br/>
-
-                            <div>Nota: El nombre solo puede contener letras</div>
-                            <br/>
-                            <TABLE BORDER="0" CELLSPACING="10" >
-
-                                <tr>
-                                    <td>
-                                        <label>Nombre</label>
-                                    </td>
-                                    <td>
-                                        <input id="nombre" name="nombre" type="text"/>
-                                    </td>
-                                </tr>
+$layout->get_header();
 
 
+$layout->set_form(
 
-                                <tr>
-                                    <td>
-                                        <label>Fijo?</label>
-                                    </td>
-                                    <td>
-                                        <input id="fijo" name="fijo" type="checkbox"/>
-                                    </td>
-                                </tr>
+    <<<EOT
+ 
+     <form  method="post" accept-charset="UTF-8" name="formulario"  id="contact-form">
+    <div class="formLayout">
+    <fieldset>
+     <div>Nota: El nombre solo puede contener letras</div>
+     <br/>
 
+ <label>Nombre</label>
+  <input id="nombre" name="nombre" type="text"/>
+  <br/>
 
+  <label>Fijo?</label>
+  <input id="fijo" name="fijo" type="checkbox"/>
+  <br/>
 
-                                <tr>
-                                    <td>
-                                        <label>Periocidad</label>
-                                    </td>
-                                    <td>
-                                        <select name="periocidad" id="periocidad">
-                                            <option value="0">Mes</option>
-                                            <option value="1">Quinceal</option>
-                                            <option value="2">Mensual</option>
-                                            <option value="3">Bimestral</option>
-                                            <option value="4">Trimestral</option>
-                                            <option value="5">Cuatrmestral</option>
-                                            <option value="6">Semestral</option>
-                                            <option value="7">Anual</option>
-                                        </select>
-                                    </td>
-                                </tr>
+  <label>Periocidad</label>
+  <select name="periocidad" id="periocidad">
+    <option value="0">Mes</option>
+    <option value="1">Quinceal</option>
+    <option value="2">Mensual</option>
+    <option value="3">Bimestral</option>
+    <option value="4">Trimestral</option>
+    <option value="5">Cuatrmestral</option>
+    <option value="6">Semestral</option>
+    <option value="7">Anual</option>
+</select>
 
+<br/>
 
-
-                                <tr>
-                                    <td>
-                                        <label>Forma de Pago</label>
-                                    </td>
-                                    <td>
-                                        <select name="tipo_pago" id="tipo_pago">
-                                            <option value="0">Monto Fijo</option>
-                                            <option value="1">% Salario Base</option>
-                                            <option value="2">% Salario Normal</option>
-                                            <option value="3">% Salario Integral</option>
-                                            <option value="4">Unidad Tributaria</option>
-                                        </select>
-                                    </td>
-                                </tr>
+ <label>Forma de Pago</label>
+  <select name="tipo_pago" id="tipo_pago">
+    <option value="0">Monto Fijo</option>
+    <option value="1">% Salario Base</option>
+    <option value="2">% Salario Normal</option>
+    <option value="3">% Salario Integral</option>
+    <option value="4">Unidad Tributaria</option>
+</select>
+ <br/>
 
 
+   <label>Valor</label>
+    <input id="valor" name="valor" type="text"/>
 
+    <br/>
 
+    <input type="submit" value="Guardar datos" name="submit">
+    <a href="./bono_produccion_ver.php"><input type="button" value="Ver datos">
+    <a href="../../mno_menu2.php"><input type="button" value="Atras"></a>
+ 
+     </div>
+    </fieldset>
+    </form>
+EOT
 
+);
 
-                                <tr>
-                                    <td>
-                                        <label>Valor</label>
-                                    </td>
-                                    <td>
-                                        <input id="valor" name="valor" type="text"/>
-                                    </td>
-                                </tr>
-
-                                <!-- leonel -->
-
-
-                            </TABLE>
-
-                            <br/>
-                            <table>
-                                <tr>
-                                    <td><input type="submit" value="Guardar datos" name="submit"></td>
-                                    <td><a href="./bono_produccion_ver.php"><input type="button" value="Ver datos"></a> </td>
-                                    <td><a href="../../mno_menu.html"><input type="button" value="Atras"></a> </td>
-
-                                </tr>
-                            </table>
-                            <!-- / END -->
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
-
-            </div>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
-    </div>
-
-
-
-
-</form>
-
-</body>
-</html>
+$layout->get_footer();
+mysql_close($conn);

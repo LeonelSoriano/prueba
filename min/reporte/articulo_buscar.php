@@ -180,7 +180,7 @@ ORDER BY nombre";
 
                 echo "<tr align='center'>";
 
-                echo"<td style='text-align: left'><font color='black'>". utf8_multiplataforma($nombre) . "</font></td>";
+                echo"<td style='text-align: left'><font color='black'>".$nombre . "</font></td>";
 //            echo"<td><font color='black'>". utf8_decode($codigo_alias).  "</font></td>";
                 echo '<td> <ul onClick="devolvercedula(\''.$id.'\',\''.$nombre.'\')" id="icons" class="ui-widget ui-helper-clearfix"> <li class="ui-state-default ui-corner-all" title=".ui-icon-check"><span class="ui-icon ui-icon-check"></span></li> </ul></td>';
                 echo "</tr>";/*     <span onClick="devolvercedula(\''.$codigo_alias.'\',\''.$nombre.'\',\''.$proveedor.'\',\''.$descripcion.'\',\''.$ubicacion.'\',\''.$existencia.'\')" class="ui-icon ui-icon-check"></span>*/

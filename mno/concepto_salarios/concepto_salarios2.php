@@ -2,19 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: leonel
- * Date: 01/10/14
- * Time: 09:32 AM
+ * Date: 08/01/15
+ * Time: 10:34 AM
  */
-include("../../db.php");
-?>
-
-<?php
-
-header("Content-Type: text/html;charset=utf-8");
+ 
+ header("Content-Type: text/html;charset=utf-8");
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
 
-require_once('../../db.php');
+include_once('../../db.php');
+
+include_once('../../clases/Seguridad.php');
+
+
+
+$a = new Seguridad();
+
+$a->chekear_session();
+
 require_once('../../clases/Validate.php');
 require_once('../../clases/funciones.php');
 
@@ -62,37 +67,37 @@ if(isset($_POST['submit'])){
     if(isset($_POST['semana_mensual'])){
 
 
-            $validation = array(
+        $validation = array(
 
-                array('nombre' => 'codigo_empleado_hi',
-                    'requerida' => true,
-                    'regla' => 'number'),
-
-
-                array('nombre' => 'anhio',
-                    'requerida' => true,
-                    'regla' => 'number'),
-
-                array('nombre' => 'sueldo_mensual',
-                    'requerida' => true,
-                    'regla' => 'float',
-                    'tipo' => ',' ),
-
-                array('nombre' => 'hora_extra_diurna',
-                    'requerida' => false,
-                    'regla' => 'number'),
+            array('nombre' => 'codigo_empleado_hi',
+                'requerida' => true,
+                'regla' => 'number'),
 
 
-                array('nombre' => 'hora_extra_nocturna',
-                    'requerida' => false,
-                    'regla' => 'number'),
+            array('nombre' => 'anhio',
+                'requerida' => true,
+                'regla' => 'number'),
 
-                array('nombre' => 'cesta_ticket',
-                    'requerida' => true,
-                    'regla' => 'number'),
+            array('nombre' => 'sueldo_mensual',
+                'requerida' => true,
+                'regla' => 'float',
+                'tipo' => ',' ),
+
+            array('nombre' => 'hora_extra_diurna',
+                'requerida' => false,
+                'regla' => 'number'),
 
 
-            );
+            array('nombre' => 'hora_extra_nocturna',
+                'requerida' => false,
+                'regla' => 'number'),
+
+            array('nombre' => 'cesta_ticket',
+                'requerida' => true,
+                'regla' => 'number'),
+
+
+        );
 
 
         $validated = new Validate($validation,$_POST);
@@ -157,7 +162,7 @@ WHERE
             }
 
 
-        include_once('./divicion1.php');
+            include_once('./divicion1.php');
 
         }else if($validated->getIsError()  ){
 
@@ -166,7 +171,7 @@ WHERE
 
     }else{
 
-       // var_dump($_POST);die;
+        // var_dump($_POST);die;
 
 
 //        $validation = array(
@@ -548,26 +553,21 @@ WHERE
 
     }
 
-    }
+}
 
 
 
 
 
-?>
+include_once('../../clases/LayoutForm.php');
+
+$layout = new LayoutForm('Módulo de Nomina | Sueldos');
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Leonel Soriano leonelsoriano3@gmail.com" />
-    <link href="/sicap/css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/sicap/css/stylesheet.css" rel="stylesheet" type="text/css" />
-    <script src="/sicap/js/jquery-1.10.2.js"></script>
 
-    <script type="text/javascript">
+$layout->append_to_header(
+    <<<EOT
+   <script type="text/javascript">
 
         $(function() {
 
@@ -691,227 +691,138 @@ WHERE
                     $("#respuesta").html(response);
                 }
             });
-
-
-
-
+    
 
         });
 
     </script>
+EOT
+);
 
-<!--    <style>-->
-<!--        input {color: #d1ccc6-->
-<!--        }-->
-<!--        select{color: #d1ccc6-->
-<!--        }-->
-<!---->
-<!--    </style>-->
+$layout->get_header();
 
-</head>
-
-
-<body class="flickr-com">
-
-
-<form method="post" accept-charset="UTF-8" name="formulario">
-
-    <div id="body_bottom_bgd">
-        <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-            <!--</div>-->                <!-- Menu -->
-            <!--  ?php include 'include/nav.php'; ?>-->
-            <div align="justify" id="right_col" >
-
-                <div id="header">
-                </div>
-
-                <div id="">
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
-                            <!--  <h1>Inicio</h1>-->
-                            <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Recursos Humanos | Empresa</strong></h1>
-                            <br/>
-
-                            <?php
-
-                            if(isset($_GET['msg'])){
-                                $error =  $_GET['error'];
-
-                                $msg = $_GET['msg'];
-
-                                if($error == 'true'){
-                                    echo('<div id="error_app"><marquee scrolldelay="100">'.$msg.'</marquee></div>');
-                                }else if($error == 'false'){
-                                    echo('<div id="done_app"><marquee scrolldelay="100">'.$msg.'</marquee></div>');
-
-                                }
-
-                            }
-
-                            ?>
-
-                            <br/>
-
-                            <TABLE BORDER="0" CELLSPACING="10" >
+$anhio_form = '';
+$anhio = date('Y');
+$anhio_form .= ('<option value="'.($anhio -3).'">'.($anhio -3).'</option>');
+$anhio_form .= ('<option value="'.($anhio -2).'">'.($anhio -2).'</option>');
+$anhio_form .= ('<option value="'.($anhio -1).'">'.($anhio -1).'</option>');
+$anhio_form .= ('<option value="'.($anhio).'"selected>'.($anhio).'</option>');
+$anhio_form .= ('<option value="'.($anhio + 1).'">'.($anhio + 1).'</option>');
 
 
-                                <TR>
-                                    <TD><label>Cédula de Empleado</label></TD>
-                                    <td> <input type="text" name="cedula"  disabled></td><td><input type="button" name="buscar_empleado" id="buscar_empleado" value="Buscar"/>
-                                    </TD>
+$mes_from = '';
 
-                                    <input type="hidden" name="codigo_empleado_hi" id="codigo_empleado_hi"/>
-                                    <input type="hidden" name="cedula_hi" id="cedula_hi"/>
-                                </TR>
+$mes = date('n');
 
-
-
-
-                                <TD><label>Año</label></TD>
-                                <TD>
-                                    <select name='anhio' id="anhio" >
-
-                                        <?php $anhio = date('Y');
-                                        echo('<option value="'.($anhio -3).'">'.($anhio -3).'</option>');
-                                        echo('<option value="'.($anhio -2).'">'.($anhio -2).'</option>');
-                                        echo('<option value="'.($anhio -1).'">'.($anhio -1).'</option>');
-                                        echo('<option value="'.($anhio).'"selected>'.($anhio).'</option>');
-                                        echo('<option value="'.($anhio + 1).'">'.($anhio + 1).'</option>');
-                                        ?>
-                                    </select>
-                                </TD>
-
-
-
-                                <TR>
-                                    <TD><label>Mes</label></TD>
-                                    <TD>
-                                        <select name='mes' id='mes' >
-
-                                            <?php
-
-                                            $mes = date('n');
-
-                                            if($mes == 1){
-                                                echo(" <option value='1' selected>Enero</option>");
-                                            }else{
-                                                echo(" <option value='1' >Enero</option>");
-                                            }
-                                            if($mes == 2){
-                                                echo(" <option value='2' selected>Febrero</option>");
-                                            }else{
-                                                echo(" <option value='2' >Febrero</option>");
-                                            }
-                                            if($mes == 3){
-                                                echo(" <option value='3' selected>Marzo</option>");
-                                            }else{
-                                                echo(" <option value='3' >Marzo</option>");
-                                            }
-                                            if($mes == 4){
-                                                echo(" <option value='4' selected>Abril</option>");
-                                            }else{
-                                                echo(" <option value='4' >Abril</option>");
-                                            }
-                                            if($mes == 5){
-                                                echo(" <option value='5' selected>Mayo</option>");
-                                            }else{
-                                                echo(" <option value='5' >Mayo</option>");
-                                            }
-                                            if($mes == 6){
-                                                echo(" <option value='6' selected>Junio</option>");
-                                            }else{
-                                                echo(" <option value='6' >Junio</option>");
-                                            }
-                                            if($mes == 7){
-                                                echo(" <option value='7' selected>Julio</option>");
-                                            }else{
-                                                echo(" <option value='7' >Julio</option>");
-                                            }
-                                            if($mes == 8){
-                                                echo(" <option value='8' selected>Agosto</option>");
-                                            }else{
-                                                echo(" <option value='8' >Agosto</option>");
-                                            }
-                                            if($mes == 9){
-                                                echo(" <option value='9' selected>Septiembre</option>");
-                                            }else{
-                                                echo(" <option value='9' >Septiembre</option>");
-                                            }
-                                            if($mes == 10){
-                                                echo(" <option value='10' selected>Octubre</option>");
-                                            }else{
-                                                echo(" <option value='10' >Octubre</option>");
-                                            }
-                                            if($mes == 11){
-                                                echo(" <option value='11' selected>Noviembre</option>");
-                                            }else{
-                                                echo(" <option value='11' >Noviembre</option>");
-                                            }
-                                            if($mes == 12){
-                                                echo(" <option value='12' selected>Diciembre</option>");
-                                            }else{
-                                                echo(" <option value='12' >Diciembre</option>");
-                                            }
-
-                                            ?>
-
-                                        </select>
-                                    </TD>
+if($mes == 1){
+    $mes_from .= (" <option value='1' selected>Enero</option>");
+}else{
+    $mes_from .= (" <option value='1' >Enero</option>");
+}
+if($mes == 2){
+    $mes_from .= (" <option value='2' selected>Febrero</option>");
+}else{
+    $mes_from .= (" <option value='2' >Febrero</option>");
+}
+if($mes == 3){
+    $mes_from .= (" <option value='3' selected>Marzo</option>");
+}else{
+    $mes_from .= (" <option value='3' >Marzo</option>");
+}
+if($mes == 4){
+    $mes_from .= (" <option value='4' selected>Abril</option>");
+}else{
+    $mes_from .= (" <option value='4' >Abril</option>");
+}
+if($mes == 5){
+    $mes_from .= (" <option value='5' selected>Mayo</option>");
+}else{
+    $mes_from .= (" <option value='5' >Mayo</option>");
+}
+if($mes == 6){
+    $mes_from .= (" <option value='6' selected>Junio</option>");
+}else{
+    $mes_from .= (" <option value='6' >Junio</option>");
+}
+if($mes == 7){
+    $mes_from .= (" <option value='7' selected>Julio</option>");
+}else{
+    $mes_from .= (" <option value='7' >Julio</option>");
+}
+if($mes == 8){
+    $mes_from .= (" <option value='8' selected>Agosto</option>");
+}else{
+    $mes_from .= (" <option value='8' >Agosto</option>");
+}
+if($mes == 9){
+    $mes_from .= (" <option value='9' selected>Septiembre</option>");
+}else{
+    $mes_from .= (" <option value='9' >Septiembre</option>");
+}
+if($mes == 10){
+    $mes_from .= (" <option value='10' selected>Octubre</option>");
+}else{
+    $mes_from .= (" <option value='10' >Octubre</option>");
+}
+if($mes == 11){
+    $mes_from .= (" <option value='11' selected>Noviembre</option>");
+}else{
+    $mes_from .= (" <option value='11' >Noviembre</option>");
+}
+if($mes == 12){
+    $mes_from .= (" <option value='12' selected>Diciembre</option>");
+}else{
+    $mes_from .= (" <option value='12' >Diciembre</option>");
+}
 
 
-                                <TR style="display: none">
-                                    <TD><label>Pago Anual?</label></TD>
-                                    <td> <input type="checkbox" name="semana_mensual" id="semana_mensual"  checked></td>
-                                    </TD>
+$layout->set_form(
 
-                                </TR>
+    <<<EOT
+ 
+     <form method="post" accept-charset="UTF-8" name="formulario"   id="contact-form">
+    <div class="formLayout">
+    <fieldset>
+ 
+ <label>Cédula de Empleado</label>
+ <input type="text" name="cedula"  disabled>
+ <input type="button" name="buscar_empleado" id="buscar_empleado" value="Buscar"/>
+ <input type="hidden" name="codigo_empleado_hi" id="codigo_empleado_hi"/>
+ <input type="hidden" name="cedula_hi" id="cedula_hi"/>
+ <br/>
+ 
+ <label>Año</label>
+ <select name='anhio' id="anhio" >
+ $anhio_form
+ </select>
+ <br/>
+ 
+ <label>Mes</label>
+ <select name='mes' id='mes' >
+ $mes_from
+ </select>
+<br/>
 
-                                <!-- leonel -->
-
-
-                            </TABLE>
-                            <div id="respuesta">
-
-                            </div>
-                            <br/>
-                            <table>
-                                <tr>
-                                    <td><input type="submit" value="Guardar datos" name="submit"></td>
-                                    <td><a href="vehiculo_ver.php"><input type="button" value="Ver datos"></a> </td>
-                                    <td><a href="../../mno_menu.html"><input type="button" value="Atras"></a> </td>
-
-                                </tr>
-                            </table>
-                            <!-- / END -->
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
-
-            </div>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
-    </div>
+<label style="display: none">Pago Anual?</label>
+ <input style="display: none" type="checkbox" name="semana_mensual" id="semana_mensual"  checked>
 
 
 
+<div id="respuesta">
 
-</form>
+</div>
+<br/>
 
-</body>
-</html>
+<input type="submit" value="Guardar datos" name="submit">
+<!--<a href="vehiculo_ver.php"><input type="button" value="Ver datos"></a> -->
+<a href="../../mno_menu2.php"><input type="button" value="Atras"></a>
+
+     </div>
+    </fieldset>
+    </form>
+EOT
+
+);
+
+$layout->get_footer();
+mysql_close($conn);

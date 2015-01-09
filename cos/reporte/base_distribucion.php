@@ -101,6 +101,8 @@ FROM
 
         $a->setLetra('Times', '', 10);
 
+        $a->_pdf->SetAligns('L',0);
+        $a->_pdf->SetAligns('R',1);
 
 
         while($test2 = mysql_fetch_array($result2)){

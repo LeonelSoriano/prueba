@@ -1,11 +1,26 @@
-
 <?php
-header('Content-Type: text/html; charset=UTF-8');
+/**
+ * Created by PhpStorm.
+ * User: leonel
+ * Date: 08/01/15
+ * Time: 11:46 AM
+ */
+ 
+ header("Content-Type: text/html;charset=utf-8");
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
 
+include_once('../../db.php');
 
-require_once ('../../db.php');
+include_once('../../clases/Seguridad.php');
+
+
+
+$a = new Seguridad();
+
+$a->chekear_session();
+
+
 require_once ('../../clases/funciones.php');
 require_once('../../clases/Validate.php');
 
@@ -267,22 +282,16 @@ if (isset($_POST['submit'])){
 
 }
 
-?>
+
+include_once('../../clases/LayoutForm.php');
+
+$layout = new LayoutForm('Módulo de Inventario | Compras');
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html >
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <script src="../../js/htmlDatePicker.js" type="text/javascript"></script>
-    <link href="../../css/htmlDatePicker.css" rel="stylesheet">
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-    <link href="../../css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-    <script src="../../js/jquery-1.10.2.js"></script>
-    <script src="../../js/jquery-ui-1.10.4.custom.js"></script>
-    <script src="../../js/clasesVarias.js"></script>
+
+$layout->append_to_header(
+    <<<EOT
+ <script src="../../js/clasesVarias.js"></script>
     <script>
 
         function mitadX(x){
@@ -468,205 +477,106 @@ if (isset($_POST['submit'])){
 
         });
     </script>
-    <!-- Beginning of compulsory code below -->
-    <link href="/sicap/css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/sicap/css/dropdown/themes/flickr.com/default.ultimate.css" media="screen" rel="stylesheet" type="text/css" />
-    <!-- / END -->
-</head>
-<body class="flickr-com">
+EOT
+);
 
-
-<form method="post" name="compras" id="form">
-<div id="body_bottom_bgd">
-<div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-<!--</div>-->                <!-- Menu -->
-<!--  ?php include 'include/nav.php'; ?>-->
-
-<div align="justify" id="right_col" >
+$layout->get_header();
 
 
 
+$moneda_from = '';
 
-<div id="header">
-</div>
-<div id="">
-<div id="firefoxbug"><!-- firefoxbug -->
-    <!-- <div id="blue_line"></div>-->
-    <div class="dynamicContent" align="left">
-        <!--  <h1>Inicio</h1>-->
-        <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-        <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>Módulo de Inventario | Compras</strong></h1>
+$result=mysql_query("SELECT * FROM min_tipo_moneda");
 
-        <!-- Beginning of compulsory code below -->
-        <br/>
+while($test = mysql_fetch_array($result)){
+    $id = $test['codigo'];
+    $moneda_from .= "<option>". $test['nombre']." (". $test['simbolo'] .")". "</option>";
 
-        <?php
-
-        if(isset($_GET['msg'])){
-            $error =  $_GET['error'];
-
-            $msg = $_GET['msg'];
-
-            if($error == 'true'){
-                echo('<div id="error_app"><marquee scrolldelay="100">'.$msg.'</marquee></div>');
-            }else if($error == 'false'){
-                echo('<div id="done_app"><marquee scrolldelay="100">'.$msg.'</marquee></div>');
-
-            }
-
-        }
-
-        ?>
-
-        <br/>
+}
 
 
-        <TABLE BORDER="0" CELLSPACING="4" WIDTH="500">
+$layout->set_form(
 
-            <TR>
-                <TD width="173"><label>Nombre de Artículo(*)</label></TD>
-                <TD width="94">
-                    <input type="text" name="codigoalias" id="codigoalias" size="20"  disabled></TD>
-                <TD>
-                    <!--<input type="submit" value="Buscar" name="submit">-->
-                    <input type="button" name="buscar" id="buscar_articulo" value="Buscar" >
-                </TD>
-            </TR>
+    <<<EOT
+ 
+     <form method="post" name="compras"   id="contact-form" id="form" >
+    <div class="formLayout">
+    <fieldset>
 
-            <TR>
-                <TD width="173"><label>Proveedor(*)</label></TD>
-                <TD width="94">
-                    <input type="text" name="empresa" id="empresa" size="20"  disabled></TD>
-                <TD>
-                    <!--<input type="submit" value="Buscar" name="submit">-->
-                    <input type="button" name="buscar" id="buscar_empresa" value="Buscar" >
-                </TD>
-            </TR>
+    <label>Nombre de Artículo(*)</label>
+    <input type="text" name="codigoalias" id="codigoalias" disabled>
+    <input type="button" name="buscar" id="buscar_articulo" value="Buscar" >
+    <br/>
 
+    <label>Proveedor(*)</label>
+     <input type="text" name="empresa" id="empresa" disabled>
+     <input type="button" name="buscar" id="buscar_empresa" value="Buscar" >
+     <br/>
 
+     <label >Fecha de Compra</label>
+     <input type="text" id="datepicker1" name="fecha_compra">
+     <br/>
 
-            <tr>
-                <td>
-                    <label >Fecha de Compra</label>
-                </td>
-                <td>
-                    <p>
-                        <input type="text" id="datepicker1" name="fecha_compra">
-                    </p>
-                </td>
-            </tr>
+      <label >Rotación de Inventario</label>
+       <input type="text" id="datepicker2" name="rotacion">
+       <br/>
 
-            <tr>
-                <td>
-                    <label >Rotación de Inventario</label>
-                </td>
-                <td>
-                    <p>
-                        <input type="text" id="datepicker2" name="rotacion">
-                    </p>
-                </td>
-            </tr>
+       <label>Tipo de Moneda</label>
+       <select name="unidad_medida" id="unidad_medida">
+       $moneda_from
+       </select>
+       <br/>
 
+       <input type="button" name="importaciones" id="importaciones" value="ingresar" />
+ <input type="text" name="valor_importacion" id="valor_importacion"  disabled>
 
+ <br/>
+ <label>Tipo de Cobro</label>
+ <br/>
 
-            <tr>
-                <td>
-                    <p>
-                        <label>Tipo de Moneda</label>
-                    </p>
-                </td>
-                <td>
-                    <p>
-                        <select name="unidad_medida" id="unidad_medida">
-                            <?php
+ <label>Efectivo </label>
+ <input style="margin-right:15%;margin-top: 8px" type="radio" name="tipo_pago" value="Efectivo" checked/>
 
-                            $result=mysql_query("SELECT * FROM min_tipo_moneda");
+ <label>Crédito</label>
+ <input type="radio" style="margin-right:15%;margin-top: 8px"  name="tipo_pago" value="Crédito"/>
+ <br/>
 
-                            while($test = mysql_fetch_array($result)){
-                                $id = $test['codigo'];
-                                echo"<option>". $test['nombre']." (". $test['simbolo'] .")". "</option>";
+ <label>Cheque </label>
+  <input type="radio" style="margin-right:15%;margin-top: 8px" name="tipo_pago" value="Cheque"/>
 
-                            }
-                            ?>
-                        </select>
-                    </p>
+  <label>Débito </label>
+  <input  style="margin-right:15%;margin-top: 8px" type="radio" name="tipo_pago" value="Débito" />
+ <br/>
 
-                </td>
-                <TD>
-                    <p>
-                        <input type="button" name="importaciones" id="importaciones" value="ingresar" />
-                    </p>
-                </TD>
+ <label>Fletes</label>
+ <input type="text" name="fletes"  id="flete" />
+ <br/>
 
-                <TD><p>&nbsp;<input type="text" name="valor_importacion" id="valor_importacion" size="12"  disabled></p></TD>
+ <label>Cantidad(*)</label>
+ <input type="text" name="cantidad" id="cantidad" />
+ <br/>
 
-            </tr>
+ <label>Gastos Varios</label>
+ <input type="text" name="gastos_varios" id="gastos_varios">
+ <br/>
 
+ <label>Monto Factura(*)</label>
+ <input type="text" name="monto_factura"  id="monto_factura">
+ <br/>
 
+ <label>Costo de Almacenaje</label>
+ <input type="text" name="costo_almacenaje"  id="costo_almacenaje">
+ <br/>
 
-            <TR>
-                <TD><label>Tipo de Cobro</label></TD>
-                <td>
-                    <p>
-                        Efectivo    <input type="radio" name="tipo_pago" value="Efectivo" checked/>
-                        &nbsp;&nbsp;&nbsp;
-                        Crédito   <input type="radio"  name="tipo_pago" value="Crédito"/>
-                        <br/><br/>
-                        Cheque    <input type="radio" name="tipo_pago" value="Cheque"/>
-                        &nbsp;&nbsp;&nbsp;
-                        Débito     <input type="radio" name="tipo_pago" value="Débito" />
-                        <br/><br/>
-                    </p>
-                </td>
-            </TR>
+ <label>Costo Unitario</label>
+ <input type="text" name="costo_unitario" id="costo_unitario"  disabled/>
+ <br/>
 
-            <TR>
-                <TD><label>Fletes</label></TD>
-                <TD><p><input type="text" name="fletes" size="20" id="flete"></p></TD>
-            </TR>
+ <label>Costo Total</label>
+ <input type="text" id="costo_total"  name="costo_total" disabled/>
+ <br/>
 
-            <TR>
-                <TD><label>Cantidad(*)</label></TD>
-                <TD><p><input type="text" name="cantidad" id="cantidad" size="20"></p></TD>
-            </TR>
-
-
-
-            <TR>
-                <TD><label>Gastos Varios</label></TD>
-                <TD><p><input type="text" name="gastos_varios" size="20" id="gastos_varios"></p></TD>
-            </TR>
-
-
-
-            <TR>
-                <TD><label>Monto Factura(*)</label></TD>
-                <TD><p><input type="text" name="monto_factura" size="20" id="monto_factura"></p></TD>
-            </TR>
-
-            <TR>
-                <TD><label>Costo de Almacenaje</label></TD>
-                <TD><p><input type="text" name="costo_almacenaje" size="20" id="costo_almacenaje"></p></TD>
-            </TR>
-
-
-            <tr>
-                <td>
-                    <label>Costo Unitario</label>
-                </td>
-                <td><p><input type="text" name="costo_unitario" id="costo_unitario"  disabled/></p></td>
-            </tr>
-
-
-            <tr>
-                <td>
-                    <label>Costo Total</label>
-                </td>
-                <td><p><input type="text" id="costo_total"  name="costo_total" disabled/></p></td>
-            </tr>
-
-
-            <input type="hidden" name="costo_total_hi"  id="costo_total_hi" />
+  <input type="hidden" name="costo_total_hi"  id="costo_total_hi" />
 
             <input type="hidden" name="codigo_articulo" id="codigo_articulo" value=""/>
             <input type="hidden" name="codigo_empresa" id="codigo_empresa" value=""/>
@@ -683,57 +593,19 @@ if (isset($_POST['submit'])){
             <input type="hidden" name="check_nacionalizacion" value="bs"/>
 
 
+    <br/>
+    <br/>
 
-        </TABLE>
+     <input type="submit" value="Guardar datos" name="submit">
+      <a href="compra_devolucion.php?paso=0"><input type="button" value="Ver datos"></a>
+       <a href="../../min_menu.php"><input type="button" value="Atras"></a>
 
-        <br/><br/>
-        <table>
-            <tr>
-                <td>
-                    <input type="submit" value="Guardar datos" name="submit">
-                </td>
-                <td>
-                    <a href="compra_devolucion.php"><input type="button" value="Ver datos"></a>
-                </td>
-                <td>
-                    <a href="../../min_menu.php"><input type="button" value="Atras"></a>
-                </td>
-            </tr>
-        </table>
-        <!-- / END -->
-        <p></p>
-    </div>
-</div><!--end firefoxbug-->
-</div><!--end left_bgd-->
+     </div>
+    </fieldset>
+    </form>
+EOT
 
-</div>
+);
 
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>
-    <!--end right_col-->
-</p>
-<p>&nbsp; </p>
-<div class="clearboth"></div>
-</div>
-<div align="center" class="pie">SICAP 2014</div>
-</div>
-
-
-
-</form>
-</body>
-</html>
-
-
-<?php
-
+$layout->get_footer();
 mysql_close($conn);
-
-?>

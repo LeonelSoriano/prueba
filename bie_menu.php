@@ -473,7 +473,7 @@ vertical-align: middle;">
                                                 <a href="">Reportes</a>
                                                 <ul>
 
-                                                    <li><a href="./bie/reporte/pre_reporte_activos">Reporte de Activos</a></li>
+                                                    <li><a href="./bie/reporte/pre_reporte_activos.php">Reporte de Activos</a></li>
 
                                                 </ul>
 

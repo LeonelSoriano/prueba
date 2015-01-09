@@ -1,93 +1,51 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html >
-<head>
-<title>SICAP | Sistema Integral de Costos</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="Tomas Bagdanavicius, http://www.lwis.net/free-css-drop-down-menu/" />
-<meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
-<meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
-<link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-<script src="../../js/htmlDatePicker.js" type="text/javascript"></script>
-<link href="../../css/htmlDatePicker.css" rel="stylesheet">
-<link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-<link href="../../css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-<script src="../../js/jquery-1.10.2.js"></script>
-<script src="../../js/jquery-ui-1.10.4.custom.js"></script>
-<script src="../../js/clasesVarias.js"></script>
-<script>
+<?php
+/**
+ * Created by PhpStorm.
+ * User: leonel
+ * Date: 08/01/15
+ * Time: 03:36 PM
+ */
+ 
+ header("Content-Type: text/html;charset=utf-8");
+ini_set('display_errors', 'On');
+ini_set('display_errors', 1);
 
-</script>
-<!-- Beginning of compulsory code below -->
-<link href="/sicap/css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
-<link href="/sicap/css/dropdown/themes/flickr.com/default.ultimate.css" media="screen" rel="stylesheet" type="text/css" />
-<!-- / END -->
-</head>
-<body class="flickr-com">
+include_once('../../db.php');
 
-
-<form method="post">
-
-    <div id="body_bottom_bgd">
-        <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-            <!--</div>-->                <!-- Menu -->
-            <!--  ?php include 'include/nav.php'; ?>-->
-            <div align="justify" id="right_col" >
+include_once('../../clases/Seguridad.php');
 
 
 
-                <div id="header">
+$a = new Seguridad();
+
+$a->chekear_session();
 
 
-                </div>
+//POST
+
+include_once('../../clases/LayoutForm.php');
+
+$layout = new LayoutForm('Módulo de Inventario | Valoración');
+
+include_once("../../clases/funciones.php");
+include_once("../../clases/Paginador.php");
+
+$a = new Paginador("min_productos_servicios",$_GET['paso']);
 
 
 
+$layout->append_to_header(
+    <<<EOT
+
+EOT
+);
+
+$layout->get_header();
 
 
-                <div id="">
+$table_form = '';
 
-
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
-
-
-
-                            <!--  <h1>Inicio</h1>-->
-                            <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>Módulo de Inventario | Valoración</strong></h1>
-                            <br/>
-
-
-                            <?php
-
-                            include("../../db.php");
-                            include_once("../../clases/funciones.php");
-                            include_once("../../clases/Paginador.php");
-
-                            $a = new Paginador("min_productos_servicios",$_GET['paso']);
-                            $a->print_sql_foot();
-
-                            ?>
-
-                            <br/>
-                            <br/>
-                            <!-- acabavan los filtros -->
-                            <table border=none class="tablas-nuevas">
-
-                                <tr>
-                                    <th style="text-align: center">Nombre</th>
-                                    <th style="text-align: center">Unidades</th>
-
-                                    <th style="text-align: center">Costo total</th>
-                                    <th style="text-align: center">Costo Unitario</th>
-
-                                    <th></th>
-                                </tr>
-                                <?php
-
-
-                                $result=mysql_query("SELECT
+$result=mysql_query("SELECT
     min_productos_servicios.codigo as codigo_producto,
 	min_valoracion.unidades as unidades,
 	min_valoracion.costo_total as costo_total,
@@ -98,54 +56,72 @@ FROM
         INNER JOIN
     min_valoracion ON min_valoracion.codigo_producto = min_productos_servicios.codigo
 ORDER BY min_productos_servicios.nombre "  . $a->print_sql_limit());
-                                while($test = mysql_fetch_array($result))
-                                {
+while($test = mysql_fetch_array($result))
+{
 
-                                    $codigo_producto = $test['codigo_producto'];
-                                    $unidades = $test['unidades'];
-                                    $costo_total = $test['costo_total'];
-                                    $promedio_actual = $test['promedio_actual'];
+    $codigo_producto = $test['codigo_producto'];
+    $unidades = $test['unidades'];
+    $costo_total = $test['costo_total'];
+    $promedio_actual = $test['promedio_actual'];
 
-                                    $nombe_producto = $test['nombre'];
+    $nombe_producto = $test['nombre'];
 
-                                    echo "<tr align='center'>";
-                                    echo"<td>" . $nombe_producto."</td>";
-                                    echo"<td style='text-align: right'>" .formatear_ve($unidades)."</td>";
-                                    echo"<td style='text-align: right' >" .formatear_ve($costo_total)."</td>";
-                                    echo"<td style='text-align: right'>" . formatear_ve($promedio_actual)."</td>";
-                                    echo"<td> <a href ='ponderado.php?codigo=$codigo_producto'>Ponderado</a></td>";
+    $table_form .=  "<tr align='center'>";
+    $table_form .= "<td>" . $nombe_producto."</td>";
+    $table_form .= "<td style='text-align: right'>" .formatear_ve($unidades)."</td>";
+    $table_form .= "<td style='text-align: right' >" .formatear_ve($costo_total)."</td>";
+    $table_form .= "<td style='text-align: right'>" . formatear_ve($promedio_actual)."</td>";
+    $table_form .= "<td> <a href ='ponderado.php?codigo=$codigo_producto'>Ponderado</a></td>";
 
-                                    echo "</tr>";
-                                }
-                                mysql_close($conn);
-                                ?>
+    $table_form .=  "</tr>";
+}
 
-                            </table>
-                            <br/>
-                            <?php
 
-                            $a->print_sql_foot();
-                            ?>
+$layout->set_form(
 
-                            <br/><br/>
-                            <a href="../../min_menu.php"><input type="button" value="Atras"></a>
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
+    <<<EOT
+ 
+ 
+ {$a->print_sql_foot()}
+<br/> 
+<br/> 
+     <form method="post" accept-charset="UTF-8"   id="contact-form">
+    <div class="formLayout">
+    <fieldset>
+ 
+ 
+  <table border=none class="tablas-nuevas">
 
-            </div>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
-    </div>
+        <tr>
+            <th style="text-align: center">Nombre</th>
+            <th style="text-align: center">Unidades</th>
 
-    <!-- / END -->
+            <th style="text-align: center">Costo total</th>
+            <th style="text-align: center">Costo Unitario</th>
 
-</form>
-</body>
-</html>
+            <th></th>
+        </tr>
+        
+        $table_form
+
+        </table>
+        <br/>
+        <br/>
+
+        {$a->print_sql_foot()}
+
+        <br/>
+        <br/>
+
+        <a href="../../min_menu.php"><input type="button" value="Atras"></a>
+
+ 
+     </div>
+    </fieldset>
+    </form>
+EOT
+
+);
+
+$layout->get_footer();
+mysql_close($conn);

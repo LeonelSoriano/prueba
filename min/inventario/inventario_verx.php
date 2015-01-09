@@ -49,6 +49,7 @@ require_once("../../clases/funciones.php");
                             '<img src="../../images/ajax-loader.gif" alt="Ajax Cargando" height="42" width="42">");
                     },
                     success:  function (response) {
+
                         $("#tabla_nueva").html(response);
                     }
                 });

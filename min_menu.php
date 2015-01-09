@@ -469,7 +469,7 @@ vertical-align: middle;">
                                                 <a href="">Procesos</a>
                                                 <ul>
 
-                                                    <li><a href="./min/valoracion/valoracion.php">Valoración</a></li>
+                                                    <li><a href="./min/valoracion/valoracion.php?paso=0">Valoración</a></li>
 
                                                 </ul>
 

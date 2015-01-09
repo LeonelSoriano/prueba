@@ -1,131 +1,119 @@
 <?php
-header("Content-Type: text/html;charset=utf-8");
+/**
+ * Created by PhpStorm.
+ * User: leonel
+ * Date: 08/01/15
+ * Time: 03:18 PM
+ */
+ 
+ header("Content-Type: text/html;charset=utf-8");
+ini_set('display_errors', 'On');
+ini_set('display_errors', 1);
 
-include("../../db.php");
+include_once('../../db.php');
 
-?>
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html >
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Tomas Bagdanavicius, http://www.lwis.net/free-css-drop-down-menu/" />
-    <meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
-    <meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <script src="../../js/htmlDatePicker.js" type="text/javascript"></script>
-
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-
-    <!-- / END -->
-
-</head>
-<body class="flickr-com">
-
-<!--<p><a href="mrh_menu.html" class="main-site">Principal</a></p>-->
-
-<!--<h1><img src="images/flickr.com/icon.png" alt="flickr" />Módulo de Recursos Humanos | Listado de Turnos</h1>-->
-
-<!-- Beginning of compulsory code below -->
-
-<form method="post" name="inventario_ver">
-
-    <div id="body_bottom_bgd">
-        <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-            <!--</div>-->                <!-- Menu -->
-            <!--  ?php include 'include/nav.php'; ?>-->
-            <div align="justify" id="right_col" style="width: 75% " >
-                <div id="header">
-                </div>
-                <div id="">
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
-                            <!--  <h1>Inicio</h1>-->
-                            <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Inventario | Productos y servicios</strong></h1>
-
-                            <br/><br/>
-                                <table border=none class="tablas-nuevas">
-                                    <tr>
-
-                                        <th>Código</th>
-                                        <th>Producto</th>
-                                        <th>Empleado</th>
-                                        <th>Fecha venta</th>
-                                        <th>Fecha Entrega</th>
-                                        <th>Codígo Factura</th>
-                                        <th>Cantidad</th>
-                                        <th>Costo Unidad</th>
+include_once('../../clases/Seguridad.php');
 
 
-                                    </tr>
-                                    <?php
-                                    include("../../db.php");
-                                    $result=mysql_query("SELECT * FROM min_ventas WHERE devolucion ='n' order by codigo ");
 
-                                    while($test = mysql_fetch_array($result))
-                                    {
-                                        //  calculos de horas
-                                        $id = $test['codigo'];
-                                        $codigo_articulo = $test['codigo_articulo'];
-                                        $codigo_cliente = $test['codigo_cliente'];
-                                        $fecha_venta = $test['fecha_venta'];
+$a = new Seguridad();
+
+$a->chekear_session();
 
 
-                                        $fecha_entrega = $test['fecha_entrega'];
-                                        $codigo_factura = $test['codigo_factura'];
-                                        $costo_unidad = $test['costo_unidad'];
-                                        $cantidad = $test['cantidad'];
+//POST
 
-                                        $result2=mysql_query("SELECT nombre FROM min_productos_servicios WHERE codigo ='$codigo_articulo'");
+include_once('../../clases/LayoutForm.php');
 
-                                        $test2 = mysql_fetch_array($result2);
-                                        $nombre_articulo =  $test2['nombre'];
+$layout = new LayoutForm('Módulo de Inventario | Venta Devolución');
 
 
-                                        echo "<tr align='center'>";
-                                        echo"<td><font color='black'>" .$id."</font></td>";
-                                        echo"<td><font color='black'>". $nombre_articulo . "</font></td>";
-                                        echo"<td><font color='black'>". $codigo_cliente . "</font></td>";
-                                        echo"<td><font color='black'>". $fecha_venta . "</font></td>";
-                                        echo"<td><font color='black'>". $fecha_entrega.  "</font></td>";
-                                        echo"<td><font color='black'>". $codigo_factura.  "</font></td>";
-                                        echo"<td><font color='black'>". $cantidad.  "</font></td>";
-                                        echo"<td><font color='black'>". $costo_unidad.  "</font></td>";
-                                        echo '<td><a href="venta_devolucion_confirmar.php?id='.$id.'">Devolucion</a></td>';
-                                        echo "</tr>";
-                                    }
-                                    mysql_close($conn);
-                                    ?>
-                                </table>
 
-                                <!-- / END -->
-                                <table></table>
+$layout->append_to_header(
+    <<<EOT
+
+EOT
+);
+
+$layout->get_header();
 
 
-                            <br/><br/><br/>
-                            <a href="venta.php"><input type="button" value="Atras"></a>
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
+$table_form = '';
 
-            </div>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
-    </div>
+$result=mysql_query("SELECT * FROM min_ventas WHERE devolucion ='n' order by codigo ");
 
-    <!-- / END -->
+while($test = mysql_fetch_array($result))
+{
+    //  calculos de horas
+    $id = $test['codigo'];
+    $codigo_articulo = $test['codigo_articulo'];
+    $codigo_cliente = $test['codigo_cliente'];
+    $fecha_venta = $test['fecha_venta'];
 
-</form>
 
-</body>
-</html>
+    $fecha_entrega = $test['fecha_entrega'];
+    $codigo_factura = $test['codigo_factura'];
+    $costo_unidad = $test['costo_unidad'];
+    $cantidad = $test['cantidad'];
+
+    $result2=mysql_query("SELECT nombre FROM min_productos_servicios WHERE codigo ='$codigo_articulo'");
+
+    $test2 = mysql_fetch_array($result2);
+    $nombre_articulo =  $test2['nombre'];
+
+
+    $table_form .=  "<tr align='center'>";
+    $table_form .= "<td><font color='black'>" .$id."</font></td>";
+    $table_form .= "<td><font color='black'>". $nombre_articulo . "</font></td>";
+    $table_form .= "<td><font color='black'>". $codigo_cliente . "</font></td>";
+    $table_form .= "<td><font color='black'>". $fecha_venta . "</font></td>";
+    $table_form .= "<td><font color='black'>". $fecha_entrega.  "</font></td>";
+    $table_form .= "<td><font color='black'>". $codigo_factura.  "</font></td>";
+    $table_form .= "<td><font color='black'>". $cantidad.  "</font></td>";
+    $table_form .= "<td><font color='black'>". $costo_unidad.  "</font></td>";
+    $table_form .=  '<td><a href="venta_devolucion_confirmar.php?id='.$id.'">Devolucion</a></td>';
+    $table_form .=  "</tr>";
+}
+
+
+$layout->set_form(
+
+    <<<EOT
+ 
+     <form method="post" accept-charset="UTF-8"   id="contact-form">
+    <div class="formLayout">
+    <fieldset>
+ 
+ 
+  <table border=none class="tablas-nuevas">
+<tr>
+
+    <th>Código</th>
+    <th>Producto</th>
+    <th>Empleado</th>
+    <th>Fecha venta</th>
+    <th>Fecha Entrega</th>
+    <th>Codígo Factura</th>
+    <th>Cantidad</th>
+    <th>Costo Unidad</th>
+
+
+</tr>
+ $table_form
+
+  </table>
+ 
+ <br/>
+ <br/>
+
+ <a href="venta.php"><input type="button" value="Atras"></a>
+
+     </div>
+    </fieldset>
+    </form>
+EOT
+
+);
+
+$layout->get_footer();
+mysql_close($conn);

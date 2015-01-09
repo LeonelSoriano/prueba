@@ -1,43 +1,22 @@
 <?php
 /**
-INSERT INTO prueba (codigo_alias,descripcion,correo,direccion,telefono,rif)
-SELECT codigo_alias,descripcion,correo,direccion,telefono,rif
-FROM min_empresa
-
-
-INSERT INTO table2 (st_id,uid,changed,status,assign_status)
-SELECT st_id,from_uid,now(),'Pending','Assigned'
-FROM table1
+ * Created by PhpStorm.
+ * User: leonel
+ * Date: 07/01/15
+ * Time: 12:10 PM
  */
 
-
-
-require_once ('../../db.php');
-require_once('../../clases/funciones.php');
+header("Content-Type: text/html;charset=utf-8");
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
 
+include_once('../../db.php');
 
-//if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
-//{
-//    /// do your magic
-//
-//    $_SESSION['error'] = "Thanks for your message!";
-//
-//    $myurl = "backup_mensual.php";
-//
-//    header("Location: $myurl");
-//    header("HTTP/1.1 303 See Other");
-//    die("redirecting");
-//}
-//
-//if ( isset($_SESSION['error']) )
-//{
-//    print "The result of your submission: ".$_SESSION['error'];
-//    unset($_SESSION['error']);
-//}
+include_once('../../clases/Seguridad.php');
 
+$a = new Seguridad();
 
+$a->chekear_session();
 
 
 $sql = "SELECT * FROM mco_backup_mensual WHERE ultimo='s'";
@@ -305,6 +284,7 @@ if (isset($_POST['submit'])){
 
 
 
+    mysql_close($coon);
     $myurl = "backup_mensual.php";
 
     header("Location: $myurl");
@@ -363,106 +343,60 @@ if($ano_ultimo == $ano_actual){
 
 }
 
-?>
 
 
-<!DOCTYPE html>
-<html>
-<head lang="es">
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Tomas Bagdanavicius, http://www.lwis.net/free-css-drop-down-menu/" />
-    <meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
-    <meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <script src="../../js/htmlDatePicker.js" type="text/javascript"></script>
-    <link href="../../css/htmlDatePicker.css" rel="stylesheet">
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-    <link href="../../css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-    <script src="../../js/jquery-1.10.2.js"></script>
-    <script src="../../js/jquery-ui-1.10.4.custom.js"></script>
+
+
+
+include_once('../../clases/LayoutForm.php');
+
+$layout = new LayoutForm('Módulo de Configuración | Cierre Mensual');
+
+
+$layout->append_to_header('
     <script>
 
         function resetForms() {
             for (var i = 0; i < document.forms.length; i++) {
                 document.forms[i].reset();
             }
+            }
 
             $(function() {
                 resetForms();
 
             });
-    </script>
-    <!-- Beginning of compulsory code below -->
-    <link href="../..css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../..css/dropdown/themes/flickr.com/default.ultimate.css" media="screen" rel="stylesheet" type="text/css" />
-    <!-- / END -->
-</head>
-<body class="flickr-com">
-<!--<p><a href="mrh_menu.html" class="main-site">Principal</a></p>-->
-<!--<h1><img src="images/seleccion_sicap_archivos/image002.jpg" alt="flickr" />Módulo de Recursos Humanos | Cargo</h1>-->
-<!-- Beginning of compulsory code below -->
-<form method="post" name="inventario" enctype="multipart/form-data">
-    <div id="body_bottom_bgd">
-        <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-            <!--</div>--> <!-- Menu -->
-            <!-- ?php include 'include/nav.php'; ?>-->
-            <div align="justify" id="right_col" >
+    </script>');
 
 
-                <div id="header">
-                </div>
-                <div id="">
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
-                            <!-- <h1>Inicio</h1>-->
-                            <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong> Módulo de Inventario | Productos y Servicios</strong></h1>
-
-                            <!-- Beginning of compulsory code below -->
-                            <br/><br/>
+$layout->get_header();
 
 
-                            <table>
-                                <tr>
-                                    <td >
-                                        <input type="submit" value="Cierre de Mes" name="submit" <?php
-                                        if($disambled)
-                                            echo("disabled");?>>
-                                    </td>
-                                    <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
+$boton_disambled = '';
+if($disambled)
+    $boton_disambled = "disabled";
 
-                                    <td>
-                                        <a href="../../min_menu.php"><input type="button" value="Atras"></a>
-                                    </td>
-                                </tr>
-                            </table>
-                            <!-- / END -->
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
 
-            </div>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
+$layout->set_form(
+
+    <<<EOT
+    <form method="post" accept-charset="UTF-8" name="gerencia"  id="contact-form">
+    <div class="formLayout">
+    <fieldset>
+
+
+    <input type="submit" value="Cierre de Mes" name="submit" $boton_disambled>
+
+    <a href="../../mco_menu.php"><input type="button" value="Atras"></a>
+
+
+
     </div>
+    </fieldset>
+    </form>
+EOT
 
+);
 
-</form>
-</body>
-</html>
+$layout->get_footer();
+mysql_close($conn);

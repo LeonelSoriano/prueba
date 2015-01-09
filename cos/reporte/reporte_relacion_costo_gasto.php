@@ -551,7 +551,10 @@ FROM
         $fecha_actual = fecha_sicap();
         if(calculo_entre_anhios($fecha_actual,$fecha_adquisicion)  < $vida_util){
 
-            $costo_adquisicion_mts = $costo_adquisicion / $total_metros;
+            $costo_adquisicion_mts = 0;
+            if($total_metros != 0){
+                $costo_adquisicion_mts = $costo_adquisicion / $total_metros;
+            }
 
             $monto_depreciar = $costo_adquisicion_mts - ($costo_adquisicion_mts * $valor_rescate / 100);
 

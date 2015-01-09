@@ -2,12 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: leonel
- * Date: 10/12/14
- * Time: 09:33 AM
+ * Date: 07/01/15
+ * Time: 12:48 PM
  */
 
+header("Content-Type: text/html;charset=utf-8");
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
+
+include_once('../../db.php');
 
 include_once('../../clases/Seguridad.php');
 
@@ -15,11 +18,6 @@ $a = new Seguridad();
 
 $a->chekear_session();
 
-?>
-
-<?php
-
-require_once ('../../db.php');
 $error =  true;
 
 
@@ -121,33 +119,19 @@ if (isset($_POST['submit'])) {
 
     }
 
-        send_error_redirect(false,'Datos Guardados Exitosamente');
-        die;
+    send_error_redirect(false,'Datos Guardados Exitosamente');
+    die;
 
 }
 
-?>
+
+include_once('../../clases/LayoutForm.php');
+
+$layout = new LayoutForm('Módulo Confoguración | Base de Distribución');
 
 
-<!DOCTYPE html>
-<html>
-<head lang="es">
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <script src="../../js/htmlDatePicker.js" type="text/javascript"></script>
-    <link href="../../css/htmlDatePicker.css" rel="stylesheet">
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-    <link href="../../css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-    <script src="../../js/jquery-1.10.2.js"></script>
-    <script src="../../js/jquery-ui-1.10.4.custom.js"></script>
-    <link href="../../js/jquery-ui-1.11.0.custom/jquery-ui.css" rel="stylesheet">
-    <script src="../../js/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
-
-    <!-- Beginning of compulsory code below -->
-    <link href="/sicap/css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/sicap/css/dropdown/themes/flickr.com/default.ultimate.css" media="screen" rel="stylesheet" type="text/css" />
-    <!-- / END -->
+$layout->append_to_header(
+    <<<EOT
 
 
     <style type="text/css">
@@ -220,8 +204,7 @@ if (isset($_POST['submit'])) {
 
     </style>
 
-
-    <script>
+   <script>
 
         function resetForms() {
             for (var i = 0; i < document.forms.length; i++) {
@@ -269,13 +252,13 @@ if (isset($_POST['submit'])) {
 
 
                     $('#tabla tr:last').after("<tr>" +
-                    "<td  style='text-align: left; '> <label style='font-size: 10px;'> " +departamento + " </label> </td> " +
-                    "<td  style='text-align: right'> <label style='font-size: 10px'>"+ cantidad+"</label> </td> " +
-                    "<td> <ul  id='icons' class='ui-widget ui-helper-clearfix'> <li   class='ui-state-default ui-corner-all' title='.ui-icon-check'><span  class='ui-icon ui-icon-check'></span></li> </ul></td>" +
-                    "<td style='display: none'> <label >"+ departamento_hi +"</label> </td> " +
+                        "<td  style='text-align: left; '> <label style='font-size: 10px;'> " +departamento + " </label> </td> " +
+                        "<td  style='text-align: right'> <label style='font-size: 10px'>"+ cantidad+"</label> </td> " +
+                        "<td> <ul  id='icons' class='ui-widget ui-helper-clearfix'> <li   class='ui-state-default ui-corner-all' title='.ui-icon-check'><span  class='ui-icon ui-icon-check'></span></li> </ul></td>" +
+                        "<td style='display: none'> <label >"+ departamento_hi +"</label> </td> " +
 
 
-                    "</tr>");
+                        "</tr>");
 
 
                     $("#departamento").val('');
@@ -308,7 +291,7 @@ if (isset($_POST['submit'])) {
 
 
                 var columns = $('#tabla tr th').map(function() {  return $(this).text();
-                });
+                    });
 
                 var tableObject = $('#tabla  tr').map(function(i) {    var row = {};  $(this).find('td').each(function(i) {      var rowName = columns[i];    row[rowName] = $(this).text();
                 });return row;   }).get();
@@ -326,133 +309,52 @@ if (isset($_POST['submit'])) {
 
         });
     </script>
+EOT
+);
 
-</head>
-<body class="flickr-com">
+$layout->get_header();
 
-<form method="post" name="nueva_erogacion" enctype="multipart/form-data" id="form">
-    <div id="body_bottom_bgd">
-        <div id="">
-            <div align="justify" id="right_col" >
+$layout->set_form(
 
-                <div id="header">
-                </div>
-                <div id="">
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
-                            <!-- <h1>Inicio</h1>-->
-                            <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong> Módulo Confoguración | Base de Distribución</strong></h1>
-
-                            <!-- Beginning of compulsory code below -->
-                            <br/>
-                            <?php
-
-                                if(isset($_GET['msg'])){
-                                    $error =  $_GET['error'];
-
-                                    $msg = $_GET['msg'];
-
-                                    if($error == 'true'){
-                                        echo('<div id="error_app"><marquee scrolldelay="100">'.$msg.'</marquee></div>');
-                                    }else if($error == 'false'){
-                                        echo('<div id="done_app"><marquee scrolldelay="100">'.$msg.'</marquee></div>');
-
-                                    }
-
-                                }
-
-                            ?>
-
-                            <br/>
-                            <TABLE BORDER="0" CELLSPACING="4" WIDTH="500">
-
-                                <TR>
-                                    <TD><label>Nombre</label></TD>
-                                    <TD><p><input type="text" name="nombre" size="20"></p></TD>
-                                </TR>
-
-                                <TR>
-                                    <TD><label>Sigla(Opcional)</label></TD>
-                                    <TD><p><input type="text" name="sigla" size="20"></p></TD>
-                                </TR>
+    <<<EOT
+    <form method="post" name="nueva_erogacion"  id="contact-form" id="form"  >
+    <div class="formLayout">
+    <fieldset>
 
 
-                                <tr>
-                                    <td>
-                                        <label>Departamento</label>
-                                    </td>
-                                    <td>
-                                        <input type='text' name='departamento' id='departamento' disabled/>
-                                    </td>
-                                    <td>
-                                        <input type='button' name='departamento_buscar' id='departamento_buscar' value='Buscar'/>
+   <label>Nombre</label>
+   <input type="text" name="nombre" >
+    <br/>
 
-                                    </td>
-                                </tr>
-                                <input type='hidden' name='departamento_hi' id='departamento_hi' value=''/><br/>
+    <label>Sigla(Opcional)</label>
+    <input type="text" name="sigla" >
 
-                                <tr>
-                                    <td>
-                                        <label > Cantidad </label>
-                                    </td>
-                                    <td>
-                                        <input type='text' name='cantidad' id='cantidad'/>
-                                    </td>
+    <br/>
+    <label>Departamento</label>
+    <input type='text' name='departamento' id='departamento' disabled/>
+    <input type='button' name='departamento_buscar' id='departamento_buscar' value='Buscar'/>
+     <input type='hidden' name='departamento_hi' id='departamento_hi' value=''/><br/>
+<br/>
 
-                                    <td>
-                                        <input type='button' value='Agregar' id='agregar'/><br/>
-                                    </td>
-                                </tr>
+<label > Cantidad </label>
+ <input type='text' name='cantidad' id='cantidad'/>
+  <input type='button' value='Agregar' id='agregar'/><br/>
+   <input type="hidden" value="" id="post_array" name="post_array"/>
+   <br/>
+   <div id='tabla_articulos' ></div>
+    <br/>
+    <input type="submit" value="Guardar datos" name="submit">
+     <a href="unidades_erogacion_ver.php"><input type="button" value="Ver Datos"></a>
+      <a href="../../mco_menu.php"><input type="button" value="Atras"></a>
 
 
-                                <input type="hidden" value="" id="post_array" name="post_array"/>
 
-                            </TABLE>
-                            <br/>
-                            <div id='tabla_articulos' ></div>
-                            <br/>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <input type="submit" value="Guardar datos" name="submit">
-                                    </td>
-                                    <td>
-                                        <a href="unidades_erogacion_ver.php"><input type="button" value="Ver Datos"></a>
-                                    </td>
+    </fieldset>
+     <div/>
+    </form>
+EOT
 
+);
 
-                                    <td>
-                                        <a href="../../mco_menu.php"><input type="button" value="Atras"></a>
-                                    </td>
-                                </tr>
-                            </table>
-                            <!-- / END -->
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
-
-            </div>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
-    </div>
-
-
-</form>
-</body>
-</html>
+$layout->get_footer();
+mysql_close($conn);

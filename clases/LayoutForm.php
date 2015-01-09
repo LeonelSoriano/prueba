@@ -6,6 +6,9 @@
  * Time: 04:22 AM
  */
 
+header("Content-Type: text/html;charset=utf-8");
+ini_set('display_errors', 'On');
+ini_set('display_errors', 1);
 
 class LayoutForm
 {
@@ -15,13 +18,17 @@ class LayoutForm
     private $pre_pend_path;
 
 
+
     public function __construct($title,$pre_pend = '../..')
     {
+
         $this->title = $title;
         $this->append_to_header = '';
         $this->pre_pend_path = $pre_pend;
 
     }
+
+
 
     public function  errores(){
 
@@ -64,7 +71,12 @@ class LayoutForm
     <link rel="stylesheet" href="'.$this->pre_pend_path.'/css/zerogrid.css" type="text/css" media="all">
     <link rel="stylesheet" href="'.$this->pre_pend_path.'/css/responsive.css" type="text/css" media="all">
     <link rel="stylesheet" href="'.$this->pre_pend_path.'/css/responsive_form.css" type="text/css" media="all">
+    <link href="'.$this->pre_pend_path.'/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 
+    <script src="'.$this->pre_pend_path.'/js/jquery-1.10.2.js"></script>
+    <script src="'.$this->pre_pend_path.'/js/jquery-ui-1.10.4.custom.js"></script>
+    <link href="'.$this->pre_pend_path.'/js/jquery-ui-1.11.0.custom/jquery-ui.css" rel="stylesheet">
+    <script src="'.$this->pre_pend_path.'/js/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
     <script src="'.$this->pre_pend_path.'/js/jquery-1.6.2.min.js" type="text/javascript"></script>
     <script src="'.$this->pre_pend_path.'/js/htmlDatePicker.js" type="text/javascript"></script>
     <link href="'.$this->pre_pend_path.'/css/htmlDatePicker.css" rel="stylesheet">
@@ -72,7 +84,6 @@ class LayoutForm
 <script src="'.$this->pre_pend_path.'/js/jquery-1.10.2.js"></script>
  <script src="'.$this->pre_pend_path.'/js/jquery-ui-1.10.4.custom.js"></script>
     <script type="text/javascript" src="'.$this->pre_pend_path.'/js/html5.js"></script>
-    <link href="'.$this->pre_pend_path.'/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 '.$this->append_to_header .'
 </head>
 <body id="page5" class="bg"     >
@@ -87,7 +98,7 @@ class LayoutForm
                         <h1  id="header_nombre" style="margin-bottom: 10px">
 
                             <div   style=" display: table-cell;
-vertical-align: middle;line-height: 120px;font-size: 35px;">
+vertical-align: middle;line-height: 120px;font-size: 28px;">
                                <a href="'.$this->pre_pend_path.'/seleccion_sicap.php" style="text-decoration: none">    <img src="'.$this->pre_pend_path.'/images/index.png"  style="vertical-align: top;max-height: 130px;"/> </a>
                                  <a href="'.$this->pre_pend_path.'/seleccion_sicap.php" style="text-decoration: none">    <img src="'.$this->pre_pend_path.'/images/index2.png"  style="float:right;max-height: 130px;"/> </a>
 

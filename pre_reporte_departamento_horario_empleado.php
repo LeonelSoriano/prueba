@@ -140,6 +140,8 @@ $mes_from
 <br/>
 
 
+<br/>
+
 <input type="submit" value="Generar Reporte" name="submit" >
 <a href="mrh_menu.php"><input type="button" value="Atras"></a>
 

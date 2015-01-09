@@ -1,80 +1,37 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: leonel
+ * Date: 08/01/15
+ * Time: 12:17 PM
+ */
+ 
+ header("Content-Type: text/html;charset=utf-8");
+ini_set('display_errors', 'On');
+ini_set('display_errors', 1);
 
-require_once ('../../db.php');
-?>
+include_once('../../db.php');
 
-<?php
-
-/*
-if (isset($_POST['submit'])){
-
-    $codigoalias = $_POST['codigoalias'];
-    $rif = $_POST['rif'];
-    $descripcion = $_POST['descripcion'];
-    $direccion = $_POST['direccion'];
-    $telefono = $_POST['telefono'];
-    $correo = $_POST['correo'];
-
-    $sql = "INSERT INTO min_empresa (codigo_alias,descripcion,correo,direccion,telefono,rif) VALUES ('$codigoalias','$descripcion','$correo',
-      '$direccion','$telefono','$rif')";
-
-    mysql_query($sql) or die('No se pudo guardar la información. '.mysql_error());
-
-}
-
-*/
-
-?>
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Tomas Bagdanavicius, http://www.lwis.net/free-css-drop-down-menu/" />
-    <meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
-    <meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <script src="../../js/htmlDatePicker.js" type="text/javascript"></script>
-    <link href="../../css/htmlDatePicker.css" rel="stylesheet">
-    <!-- Beginning of compulsory code below -->
-    <link href="/sicap/css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/sicap/css/dropdown/themes/flickr.com/default.ultimate.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-
-
-    <script src="../../js/jquery-ui-1.11.0.custom/external/jquery/jquery.js" type="text/javascript"></script>
-    <script src="../../js/jquery-validation-1.13.0/dist/jquery.validate.js" type="text/javascript"></script>
-    <script src="../../js/jquery-validation-1.13.0/src/localization/messages_es.js" type="text/javascript"></script>
-
-
-    <script>
-
-/*        Number.prototype.formatMoney = function(c, d, t){
-            var n = this,
-                c = isNaN(c = Math.abs(c)) ? 2 : c,
-                d = d == undefined ? "." : d,
-                t = t == undefined ? "," : t,
-                s = n < 0 ? "-" : "",
-                i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
-                j = (j = i.length) > 3 ? j % 3 : 0;
-            return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
-        };
-
-
-        function covertir(str_num){
-            if(str_num.search(",") != -1){
-                str_num.replace(",",".");
-            }else if(str_num.search(".") != -1){
-                str_num.replace(",",".");
-            }
-        }
-
-*/
+include_once('../../clases/Seguridad.php');
 
 
 
+$a = new Seguridad();
+
+$a->chekear_session();
+
+
+//POST
+
+include_once('../../clases/LayoutForm.php');
+
+$layout = new LayoutForm('Módulo de Configuración | Reabrir Orden');
+
+
+
+$layout->append_to_header(
+    <<<EOT
+ <script>
 
 function SumComa()
 {
@@ -333,160 +290,79 @@ function SumComa()
     </style>
 
 
+EOT
+);
 
-</head>
-
-
-<body class="flickr-com">
-<!--<p><a href="mrh_menu.html" class="main-site">Principal</a></p>-->
-<!--<h1><img src="images/seleccion_sicap_archivos/image002.jpg" alt="flickr" />Módulo de Recursos Humanos | Cargo</h1>-->
-<!-- Beginning of compulsory code below -->
-
-<form method="post" id="myForm" accept-charset="UTF-8">
-
-    <div id="body_bottom_bgd">
-        <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-            <!--</div>-->                <!-- Menu -->
-            <!--  ?php include 'include/nav.php'; ?>-->
-            <div align="justify" id="right_col" >
-                <div id="header">
-                </div>
-                <div id="">
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
-                            <!--  <h1>Inicio</h1>-->
-                            <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Inventario | Empresa</strong></h1>
+$layout->get_header();
 
 
+$layout->set_form(
 
+    <<<EOT
+ 
+     <form method="post"  accept-charset="UTF-8"   id="contact-form" id="myForm">
+    <div class="formLayout">
+    <fieldset>
 
-                            <!-- este lleva de mas en una ventana emergente gasto de importacion
-                            gastos aduanales, gostos arancelarios, gasto nacionalizacion -->
-                            <TABLE BORDER="0" CELLSPACING="4" WIDTH="380" id="tabla">
-                                <tr>
-                                    <td><label>Gasto de Importación </label></td>
-                                    <TD><p><input type="text" id="gasto_importacion" name="gasto_importacion"  size="20" /></p></TD>
-                                    <td><p>
-                                            <input type="radio" name="opcion_importacion" value="bs" checked/>&nbsp; Bol&iacute;var
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <input type="radio" name="opcion_importacion" value="moneda_extranjera"/>&nbsp; Moneda Extranjera
-                                    </p></td>
-                                </tr>
+    <label>Gasto de Importación </label>
+    <input type="text" id="gasto_importacion" name="gasto_importacion" />
+    <br/>
 
-                                <tr>
-                                    <td><label>Gastos Aduanales</label></td>
-                                    <TD><p><input type="text" name="" id="gasto_aduanales" size="20"/></p></TD>
+    <input type="radio"  name="opcion_importacion" value="bs" checked/>&nbsp; Bol&iacute;var
+    <br/>
 
-                                    <td><p>
-                                            <input type="radio" name="opcion_aduanales" value="bs" checked/>&nbsp; Bol&iacute;var
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <input type="radio" name="opcion_aduanales" value="moneda_extranjera"/>&nbsp; Moneda Extranjera
-                                        </p></td>
-                                </tr>
+    <input type="radio"  name="opcion_importacion" value="moneda_extranjera"/>&nbsp; Moneda Extranjera
+    <br/>
+     <br/>
 
+    <label>Gastos Aduanales</label>
+    <input type="text" name="" id="gasto_aduanales" />
+    <br/>
 
-                                <TR>
-                                    <td><label>Gastos Arancelarios</label></td>
-                                    <td><p><input type="text" name="gastos_arancelarios" id="gastos_arancelarios"></p></td>
+    <input type="radio"  name="opcion_aduanales" value="bs" checked/>&nbsp; Bol&iacute;var
+     <br/>
+    <input type="radio"  name="opcion_aduanales" value="moneda_extranjera"/>&nbsp; Moneda Extranjera
+    <br/>
+     <br/>
 
-                                    <td><p>
-                                            <input type="radio" name="opcion_arancelarios" value="bs" checked/>&nbsp; Bol&iacute;var
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <input type="radio" name="opcion_arancelarios" value="moneda_extranjera"/>&nbsp; Moneda Extranjera
-                                        </p></td>
-                                </TR>
+    <label>Gastos Arancelarios</label>
+    <input type="text" name="gastos_arancelarios" id="gastos_arancelarios">
+    <br/>
 
-                                <tr>
-                                    <td><label >Gasto de Nacionalizacion</label></td>
-                                    <td><p><input type="text" name="gasto_nacionalizacion" id="gasto_nacionalizacion"  size="20"/></p></td>
-                                    <td><p>
-                                            <input type="radio" name="opcion_nacionalizacion" value="bs" checked/>&nbsp; Bol&iacute;var
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <input type="radio" name="opcion_nacionalizacion" value="moneda_extranjera"/>&nbsp; Moneda Extranjera
-                                        </p></td>
+    <input type="radio" name="opcion_arancelarios" value="bs" checked/>&nbsp; Bol&iacute;var
+    <br/>
+     <input type="radio" name="opcion_arancelarios" value="moneda_extranjera"/>&nbsp; Moneda Extranjera
+      <br/>
+ <br/>
 
-                                </tr>
-                                <br/>
+ <label >Gasto de Nacionalizacion</label>
+ <input type="text" name="gasto_nacionalizacion" id="gasto_nacionalizacion" />
+ <br/>
 
+ <input type="radio"  name="opcion_nacionalizacion" value="bs" checked/>&nbsp; Bol&iacute;var
+ <br/>
+ <input type="radio" name="opcion_nacionalizacion" value="moneda_extranjera"/>&nbsp; Moneda Extranjera
+ <br/>
+ <br/>
 
-                                <tr>
-                                    <td><label >Tasa de Cambio</label></td>
-                                    <td><p><input type="text" name="tasa_cambio" id="tasa_cambio"/></p></td>
-                                    <td>
-                                        <p><input type="button" name="CONCEX" value="CONCEX" id="CONCEX"/>
-                                        <input type="button" name="SICAD" value="SICAD" id="SICAD"/>
-                                            <input type="button" name="SICAD_II" value="SICAD II" id="SICAD_II"/>
-                                        </p>
-                                    </td>
+ <label >Tasa de Cambio</label>
+ <input type="text" name="tasa_cambio" id="tasa_cambio"/>
+ <br/>
 
+ <input type="button" name="CONCEX" value="CONCEX" id="CONCEX"/>
+ <input type="button" name="SICAD" value="SICAD" id="SICAD"/>
+ <input type="button" name="SICAD_II" value="SICAD II" id="SICAD_II"/>
 
-                                </tr>
+ <br/>
+ <br/>
+ <input type="button" id="boton_submit" value="Guardar datos" name="boton_submit" />
 
+     </div>
+    </fieldset>
+    </form>
+EOT
 
-                            </TABLE>
+);
 
-                            <br/>
-                            <table>
-                                <tr>
-                                    <td><input type="button" id="boton_submit" value="Guardar datos" name="boton_submit" />
-
-                                </tr>
-                            </table>
-                            <!-- / END -->
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
-
-            </div>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
-    </div>
-
-
-
-
-</form>
-
-
-
-
-</body>
-</html>
-
-
-
-<!--  guardado este codigo q lo colocare en configuracino -->
-<?php
-
-/*<label>Tipo de Empresa</label><br/>
-    <div style="margin-left: 135px">
-
-
-       <?php
-       $result = mysql_query("SET NAMES utf8");
-        $result=mysql_query("SELECT tipo FROM min_tipo_empresa");
-        while($test = mysql_fetch_array($result)){
-
-            echo "<p><input type='checkbox' name='tipo[]' value='". utf8_encode($test['tipo']) . "'/>&nbsp;&nbsp;&nbsp;&nbsp;" .utf8_encode($test['tipo']) ."</p>";
-
-        }
-
-*/
-?>
-
+$layout->get_footer();
+mysql_close($conn);

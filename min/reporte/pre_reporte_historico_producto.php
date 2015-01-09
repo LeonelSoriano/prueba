@@ -2,35 +2,40 @@
 /**
  * Created by PhpStorm.
  * User: leonel
- * Date: 12/11/14
- * Time: 01:25 PM
+ * Date: 07/01/15
+ * Time: 01:15 PM
  */
 
 header("Content-Type: text/html;charset=utf-8");
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
 
-require_once('../../db.php');
+include_once('../../db.php');
+
+include_once('../../clases/Seguridad.php');
+
+$a = new Seguridad();
+
+$a->chekear_session();
+
+include_once('../../clases/LayoutForm.php');
+
+$layout = new LayoutForm('Módulo de Inventarios | Historico Producto');
 
 
-?>
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Leonel Soriano leonelsoriano3@gmail.com" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-    <script src="../../js/jquery-1.10.2.js"></script>
-    <link href="../../js/jquery-ui-1.11.0.custom/jquery-ui.css" rel="stylesheet">
+$select_inventario_from = '';
+$result=mysql_query("SELECT * FROM min_tipo_inventario WHERE codigo <>'12'");
+while($test = mysql_fetch_array($result)){
 
-    <script src="../../js/jquery-ui-1.11.0.custom/external/jquery/jquery.js"></script>
+    $codigo = $test['codigo'];
+    $select_inventario_from .= "<option value='$codigo'>". $test['tipo']."</option>";
+}
 
-    <script src="../../js/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
 
+$layout->append_to_header(
+    <<<EOT
     <script type="text/javascript">
 
         $(function() {
@@ -74,7 +79,7 @@ require_once('../../db.php');
 
 
                     $('#tabla tr:last').after("<tr>" +
-                    "<td  style='text-align: left'> <label style='font-size: 14px'> "+ nombre_producto +" </label> </td> " +
+                    "<td  style='text-align: left'>  "+ nombre_producto +"  </td> " +
                     "<td> <ul  id='icons' class='ui-widget ui-helper-clearfix'> <li class='ui-state-default ui-corner-all' title='.ui-icon-check'><span class='ui-icon ui-icon-check'></span></li> </ul></td>" +
                     "<td style='display: none'> <label >"+id_producto+"</label> </td> " +
                     "</tr>");
@@ -234,121 +239,61 @@ require_once('../../db.php');
         }
 
     </style>
+EOT
+);
 
-</head>
 
+$layout->get_header();
 
-<body class="flickr-com">
+$layout->set_form(
 
-<form method="post" accept-charset="UTF-8" id="form" name="formulario" action="reporte_historico_producto.php">
+    <<<EOT
+    <form method="post" accept-charset="UTF-8" id="form" name="formulario" action="reporte_historico_producto.php  id="contact-form">
+    <div class="formLayout">
+    <fieldset>
 
-    <div id="body_bottom_bgd">
-        <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-            <!--</div>-->                <!-- Menu -->
-            <!--  ?php include 'include/nav.php'; ?>-->
-            <div align="justify" id="right_col" >
-
-                <div id="header">
-                </div>
-
-                <div id="">
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
-                            <!--  <h1>Inicio</h1>-->
-                            <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Inventario | Empresa</strong></h1>
-                            <br/>
-                            <TABLE BORDER="0" CELLSPACING="10" >
-                                <!---->
-                                <!--                                <tr>-->
-                                <!--                                    <td><label>Artículo o Servicio</label></td>-->
-                                <!--                                    <td>-->
-                                <!--                                        <input type="text" name="nombre_articulo"  disabled>-->
-                                <!--                                        <input type="button" name="buscar_articulo" id="buscar_articulo" value="Buscar"/>-->
-                                <!---->
-                                <!--                                    </td>-->
-                                <!--                                    <input type="hidden" name="codigo_articulo_hi" id="codigo_articulo_hi"/>-->
-                                <!--                                </tr>-->
-
-                                <TR>
-                                    <TD><label>Tipo de Inventario</label></TD>
-                                    <TD><p>
-                                        <select name="inventario"  id="inventario">
-
-                                            <?php
-                                            $result=mysql_query("SELECT * FROM min_tipo_inventario WHERE codigo <>'12'");
-                                            while($test = mysql_fetch_array($result)){
-
-                                                $codigo = $test['codigo'];
-                                                echo"<option value='$codigo'>". $test['tipo']."</option>";
-                                            }
-
-                                            ?>
-                                        </select>
-                                    </p></TD>
-                                </TR>
-
-                                <tr>
-                                    <td><input type="radio" name="tipo" id="compra" value="compra" checked/>  Compra</td>
-                                    <td><input type="radio" name="tipo" id="venta" value="venta"/>  Venta</td>
-                                </tr>
-
-                                <tr>
-                                    <td><label>Articulo</label></td>
-                                    <td><input type='button' name='articulo_buscar' id='articulo_buscar' value='Buscar'/></td>
-                                    <td><input type='hidden' name='articulo_hi' name='articulo_hi'/></td>
-                                </tr>
+<label>Tipo de Inventario</label>
+<select name="inventario"  id="inventario">
+$select_inventario_from
+</select>
+<br/>
 
 
 
+    <label style="width: 100px">Compra</label>
+   <input style="margin-top: 8px" type="radio" name="tipo" id="compra" value="compra" checked/>
+    <br/>
 
-                                <input type="hidden" id="nombre_producto" value=""/>
-                                <input type="hidden" id="id_producto" value=""/>
-                                <input type="hidden" value="" id="post_array" name="post_array"/>
+ <label style="width: 100px">Venta</label>
+<input style="margin-top: 8px" type="radio" name="tipo" id="venta" value="venta"/>
+<br/>
 
-                            </TABLE>
+<label>Articulo</label>
+<input type='button' name='articulo_buscar' id='articulo_buscar' value='Buscar'/>
+<input type='hidden' name='articulo_hi' name='articulo_hi'/>
 
-                            <div id="table">
+<input type="hidden" id="nombre_producto" value=""/>
+<input type="hidden" id="id_producto" value=""/>
+<input type="hidden" value="" id="post_array" name="post_array"/>
 
-                            </div>
+<br/>
 
-                            <br/>
-                            <table>
-                                <tr>
-                                    <td><input type="submit" value="Generar Reporte" name="submit"></td>
-                                    <td><a href="../../min_menu.php"><input type="button" value="Atras"></a> </td>
+<div id="table">
 
-                                </tr>
-                            </table>
-                            <!-- / END -->
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
+</div>
+<br/>
+<br/>
+<input type="submit" value="Generar Reporte" name="submit">
+<a href="../../min_menu.php"><input type="button" value="Atras"></a>
 
-            </div>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
+
     </div>
+    </fieldset>
+    </form>
+EOT
+);
 
 
 
-
-</form>
-
-</body>
-</html>
+$layout->get_footer();
+mysql_close($conn);

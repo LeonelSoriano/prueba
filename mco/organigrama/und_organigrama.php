@@ -2,14 +2,25 @@
 /**
  * Created by PhpStorm.
  * User: leonel
- * Date: 27/10/14
- * Time: 01:17 PM
+ * Date: 08/01/15
+ * Time: 09:38 AM
  */
-?>
+ 
+ header("Content-Type: text/html;charset=utf-8");
+ini_set('display_errors', 'On');
+ini_set('display_errors', 1);
+
+include_once('../../db.php');
+
+include_once('../../clases/Seguridad.php');
 
 
-<?php
-include("db.php");
+
+$a = new Seguridad();
+
+$a->chekear_session();
+
+
 $sql = "SELECT * FROM mno_gerencia ORDER BY profundidad";
 
 $result=mysql_query($sql);
@@ -27,91 +38,35 @@ while($test = mysql_fetch_array($result)){
 }
 
 
+include_once('../../clases/LayoutForm.php');
 
-?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
-<head>
-
-
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Tomas Bagdanavicius, http://www.lwis.net/free-css-drop-down-menu/" />
-    <meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
-    <meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../../css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-    <script src="../../js/jquery-1.10.2.js"></script>
-    <script src="../../js/jquery-ui-1.10.4.custom.js"></script>
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/sicap/resources/demos/style.css">
-
-
-</head>
-<body class="flickr-com">
-
-
-<p>&nbsp;</p>
-<!-- Beginning of compulsory code below -->
-
-<div id="body_bottom_bgd">
-    <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-        <!--</div>-->                <!-- Menu -->
-        <!--  ?php include 'include/nav.php'; ?>-->
-        <div align="justify" id="right_col" >
+$layout = new LayoutForm('Módulo de Configuración | Ver Organigrama(estructura)');
 
 
 
-            <div id="header">
-            </div>
-            <div id="">
-                <div id="firefoxbug"><!-- firefoxbug -->
-                    <!-- <div id="blue_line"></div>-->
-                    <div class="dynamicContent" align="left">
-                        <!--  <h1>Inicio</h1>-->
-                        <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
+$layout->append_to_header(
+    <<<EOT
 
-                        <h1><img src="/sicap/images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Nómina | Gerencia</strong></h1>
-                        <br />
+EOT
+);
+
+$layout->get_header();
 
 
-                        <div style="color:#5b8ab1;font-size: 1.5em;font-weight: bold;" >Organigrama</div>
+$layout->set_form(
+
+    <<<EOT
+ 
+<div style="color:#0db1bd;font-size: 1.5em;font-weight: bold;" >Organigrama</div>
+
+<iframe src="./unidad.php" frameborder="0" width="150%" height="500"></iframe>
+
+<a href="/sicap/mco_menu.php"><input type="button" value="Atras"></a>
 
 
-                        <iframe src="./unidad.php" frameborder="0" width="150%" height="500"></iframe>
+EOT
 
+);
 
-                        <br/>
-                        <table>
-                            <tr>
-                                    <td><a href="/sicap/mco_menu.html"><input type="button" value="Atras"></a></td>
-                            </tr>
-                        </table>
-
-                        <!-- / END -->
-                        <p></p>
-                    </div>
-                </div><!--end firefoxbug-->
-            </div><!--end left_bgd-->
-
-        </div>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>
-            <!--end right_col-->
-        </p>
-        <p>&nbsp; </p>
-        <div class="clearboth"></div>
-    </div>
-    <div align="center" class="pie">SICAP 2014</div>
-</div>
-
-</body>
-</html>
+$layout->get_footer();
+mysql_close($conn);

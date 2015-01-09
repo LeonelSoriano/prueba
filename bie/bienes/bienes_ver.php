@@ -1,33 +1,37 @@
 <?php
-header("Content-Type: text/html;charset=utf-8");
+/**
+ * Created by PhpStorm.
+ * User: leonel
+ * Date: 08/01/15
+ * Time: 03:43 PM
+ */
+ 
+ header("Content-Type: text/html;charset=utf-8");
+ini_set('display_errors', 'On');
+ini_set('display_errors', 1);
 
+include_once('../../db.php');
 
-include("../../db.php");
+include_once('../../clases/Seguridad.php');
 require_once("../../clases/funciones.php");
 
-?>
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html >
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Tomas Bagdanavicius, http://www.lwis.net/free-css-drop-down-menu/" />
-    <meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
-    <meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <script src="../../js/htmlDatePicker.js" type="text/javascript"></script>
+$a = new Seguridad();
 
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
+$a->chekear_session();
 
 
-    <script src="../../js/jquery-1.10.2.js"></script>
-    <script src="../../js/jquery-ui-1.10.4.custom.js"></script>
+//POST
+
+include_once('../../clases/LayoutForm.php');
+
+$layout = new LayoutForm('Módulo de Configuración | Reabrir Orden');
 
 
-    <!-- / END -->
 
+$layout->append_to_header(
+    <<<EOT
     <script>
 
         $(function(){
@@ -63,71 +67,54 @@ require_once("../../clases/funciones.php");
 
     </script>
 
+EOT
+);
 
-</head>
-<body class="flickr-com">
-
-<form method="post" name="inventario_ver">
-
-    <div id="body_bottom_bgd">
-        <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-            <!--</div>-->                <!-- Menu -->
-            <!--  ?php include 'include/nav.php'; ?>-->
-            <div align="justify" id="right_col" style="width: 80%">
-                <div id="header">
-                </div>
-                <div id="">
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
-                            <!--  <h1>Inicio</h1>-->
-                            <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Inventario | Productos y servicios</strong></h1>
+$layout->get_header();
 
 
-                            <br/><br/>
-                            <p style="margin-left: 40px">
-                                <label>Tipo de Activo</label>
+$select_form = '';
 
-                                <select id="inventario">
-                                    <option ></option>
-                                    <?php
-                                    $result=mysql_query("SELECT nombre,codigo FROM bie_tipo_bien");
-                                    while($test = mysql_fetch_array($result)){
-                                        echo"<option value='". $test['codigo'] ."'>". $test['nombre']."</option>";
-                                    }
-
-                                    ?>
-                                </select>
-                            </p>
-
-
-                            <br/><br/>
-                            <table border=none class="tablas-nuevas" id="tabla_nueva">
+$result=mysql_query("SELECT nombre,codigo FROM bie_tipo_bien");
+while($test = mysql_fetch_array($result)){
+    $select_form .= "<option value='". $test['codigo'] ."'>". $test['nombre']."</option>";
+}
 
 
 
-                            </table>
-                            <br/><br/><br/>
-                            <a href="../../bie_menu.php"><input type="button" value="Atras"></a>
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
 
-            </div>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
-    </div>
+$layout->set_form(
 
-    <!-- / END -->
+    <<<EOT
+ 
+     <form form method="post" name="inventario_ver"   id="contact-form">
+    <div class="formLayout">
+    <fieldset>
 
-</form>
+ <label>Tipo de Activo</label>
+ <select id="inventario">
+      <option ></option>
+   $select_form
+ </select>
 
-</body>
-</html>
+ <br/><br/>
+<table border=none class="tablas-nuevas" id="tabla_nueva">
+
+
+
+</table>
+
+<br/>
+
+<a href="../../bie_menu.php"><input type="button" value="Atras"></a>
+
+
+     </div>
+    </fieldset>
+    </form>
+EOT
+
+);
+
+$layout->get_footer();
+mysql_close($conn);

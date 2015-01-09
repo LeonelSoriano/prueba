@@ -2,21 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: leonel
- * Date: 02/10/14
- * Time: 12:13 PM
+ * Date: 08/01/15
+ * Time: 09:11 AM
  */
-
-?>
-
-
-<?php
-
-header("Content-Type: text/html;charset=utf-8");
+ 
+ header("Content-Type: text/html;charset=utf-8");
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
 
-require_once('../../db.php');
+include_once('../../db.php');
 
+include_once('../../clases/Seguridad.php');
+
+
+
+$a = new Seguridad();
+
+$a->chekear_session();
 
 
 if(isset($_POST['submit'])){
@@ -67,21 +69,15 @@ if(isset($_POST['submit'])){
 }
 
 
+include_once('../../clases/LayoutForm.php');
 
-?>
+$layout = new LayoutForm('Módulo de Configuración | Variables de Sistema');
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Leonel Soriano leonelsoriano3@gmail.com" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-    <script src="../../js/jquery-1.10.2.js"></script>
 
-    <script type="text/javascript">
+$layout->append_to_header(
+    <<<EOT
+  <script type="text/javascript">
 
         $(function() {
 
@@ -148,104 +144,59 @@ if(isset($_POST['submit'])){
         });
 
     </script>
+EOT
+);
 
-</head>
+$layout->get_header();
 
-
-<body class="flickr-com">
-
-
-<form method="post" accept-charset="UTF-8" name="formulario">
-
-    <div id="body_bottom_bgd">
-        <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-            <!--</div>-->                <!-- Menu -->
-            <!--  ?php include 'include/nav.php'; ?>-->
-            <div align="justify" id="right_col" >
-
-                <div id="header">
-                </div>
-
-                <div id="">
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
-                            <!--  <h1>Inicio</h1>-->
-                            <!--<p><a href="seleccion_sicap.html" class="main-site">Principal</a></p>-->
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Configuración | Variables de Sistema</strong></h1>
-                            <br/>
-                            <TABLE BORDER="0" CELLSPACING="10" >
+$select_bono_from = '';
 
 
-                                <TD><label>Bono</label></TD>
-                                <?php // consulta de los meses
-                                // Consultar la base de datos
-
-                                $consulta_mysql="SELECT * FROM mno_new_variables WHERE fijo = 'no'
+$consulta_mysql="SELECT * FROM mno_new_variables WHERE fijo = 'no'
                                     ORDER BY nombre";
-                                $resultado_consulta_mysql=mysql_query($consulta_mysql);
-                                echo "<TD>";
-                                echo "<select name='bono_codigo' id='bono' >";
-                                while($fila=mysql_fetch_array($resultado_consulta_mysql)){
-                                    echo "<option value='".$fila['codigo']."'>".$fila['nombre']."</option>";
-                                }
-                                echo "</select>";
-                                echo "</TD>";
-                                ?>
-                                </tr>
-                                <!-- leonel -->
+$resultado_consulta_mysql=mysql_query($consulta_mysql);
 
-
-                                <tr>
-                                    <td><label >Valor</label></td>
-                                    <td><input type="text" name="valor" id="valor" /></td>
-                                </tr>
-
-
-                            </TABLE>
-
-
-                            <div id="respuesta">
-
-                            </div>
-
-                            <br/>
-                            <table>
-                                <tr>
-                                    <td><input type="submit" value="Guardar datos" name="submit"></td>
-                                    <td><a href="./variable_ver.php"><input type="button" value="Ver"></a> </td>
-                                    <td><a href="../../mco_menu.php"><input type="button" value="Atras"></a> </td>
-
-                                </tr>
-                            </table>
-                            <!-- / END -->
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
-
-            </div>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
-    </div>
+$select_bono_from .= "<select name='bono_codigo' id='bono' >";
+while($fila=mysql_fetch_array($resultado_consulta_mysql)){
+    $select_bono_from .= "<option value='".$fila['codigo']."'>".$fila['nombre']."</option>";
+}
+$select_bono_from .= "</select>";
 
 
 
 
-</form>
 
-</body>
-</html>
+$layout->set_form(
+
+    <<<EOT
+ 
+     <form method="post" accept-charset="UTF-8" name="formulario"   id="contact-form">
+    <div class="formLayout">
+    <fieldset>
+
+ <label>Bono</label>
+ $select_bono_from
+ <br/>
+
+ <label >Valor</label>
+ <input type="text" name="valor" id="valor" />
+ <br/><br/>
+
+  <div id="respuesta">
+  </div>
+
+ <br/>
+
+ <input type="submit" value="Guardar datos" name="submit">
+ <a href="./variable_ver.php"><input type="button" value="Ver">
+ <a href="../../mco_menu.php"><input type="button" value="Atras">
+
+     </div>
+    </fieldset>
+    </form>
+EOT
+
+);
+
+$layout->get_footer();
+mysql_close($conn);

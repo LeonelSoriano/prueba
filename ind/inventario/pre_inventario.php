@@ -2,124 +2,65 @@
 /**
  * Created by PhpStorm.
  * User: leonel
- * Date: 23/12/14
- * Time: 09:51 AM
+ * Date: 08/01/15
+ * Time: 11:40 AM
  */
-
-header("Content-Type: text/html;charset=utf-8");
+ 
+ header("Content-Type: text/html;charset=utf-8");
 ini_set('display_errors', 'On');
 ini_set('display_errors', 1);
 
+include_once('../../db.php');
 
 include_once('../../clases/Seguridad.php');
+
+
 
 $a = new Seguridad();
 
 $a->chekear_session();
 
 
+//POST
 
-require_once('../../db.php');
+include_once('../../clases/LayoutForm.php');
 
-
-?>
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
-<head>
-    <title>SICAP | Sistema Integral de Costos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Leonel Soriano leonelsoriano3@gmail.com" />
-    <link href="../../css/helper.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-    <script src="../../js/jquery-1.10.2.js"></script>
-
-    <script type="text/javascript">
+$layout = new LayoutForm('Módulo de Configuración | Reabrir Orden');
 
 
 
+$layout->append_to_header(
+    <<<EOT
 
-    </script>
+EOT
+);
 
-</head>
-
-
-<body class="flickr-com">
-
-
-<form method="post" accept-charset="UTF-8" name="formulario" action="inventario.php">
-
-    <div id="body_bottom_bgd">
-        <div id=""> <!--<img src="images/Logo_Inventario.png"/>-->
-            <!--</div>-->                <!-- Menu -->
-            <!--  ?php include 'include/nav.php'; ?>-->
-            <div align="justify" id="right_col" >
-
-                <div id="header">
-                </div>
-
-                <div id="">
-                    <div id="firefoxbug"><!-- firefoxbug -->
-                        <!-- <div id="blue_line"></div>-->
-                        <div class="dynamicContent" align="left">
+$layout->get_header();
 
 
-                            <h1><img src="../../images/seleccion_sicap_archivos/image002.jpg" alt="flickr" /><strong>                Módulo de Recursos Humanos | Reporte Costo Empleado</strong></h1>
-                            <br/>
-                            <TABLE BORDER="0" CELLSPACING="10" >
+$layout->set_form(
 
-                                <tr>
-                                    <td>
-                                        <label for="opciones"> Total Inventario</label> &nbsp;<input type="radio" name="opciones" value="total_inventario" checked/>
-                                    </td>
-                                </tr>
-
-                            </TABLE>
-
-                            <br/>
-                            <table>
-                                <tr>
-                                    <td><input type="submit" value="Generar Indicador" name="submit" ></td>
-                                    <td><a href="../../ind_menu.php"><input type="button" value="Atras"></a> </td>
-
-                                </tr>
-                            </table>
-                            <!-- / END -->
-                            <p></p>
-                        </div>
-                    </div><!--end firefoxbug-->
-                </div><!--end left_bgd-->
-
-            </div>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>
-                <!--end right_col-->
-            </p>
-            <p>&nbsp; </p>
-            <div class="clearboth"></div>
-        </div>
-        <div align="center" class="pie">SICAP 2014</div>
-    </div>
+    <<<EOT
+ 
+     <form  method="post" accept-charset="UTF-8" name="formulario" action="inventario.php" id="contact-form">
+    <div class="formLayout">
+    <fieldset>
 
 
+ <label for="opciones">Total Inventario</label>
+  <input type="radio" style="margin-right:15%;margin-top: 8px" type="radio" name="opciones" value="total_inventario" checked>
+    <br/>
+<br/>
 
-</form>
+<input type="submit" value="Generar Indicador" name="submit" >
+<a href="../../ind_menu.php"><input type="button" value="Atras"></a>
 
-</body>
-</html>
+     </div>
+    </fieldset>
+    </form>
+EOT
 
+);
 
-
-<?php
-
+$layout->get_footer();
 mysql_close($conn);
-?>
-
