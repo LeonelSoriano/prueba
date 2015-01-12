@@ -59,7 +59,7 @@ while($test = mysql_fetch_array($result)){
 $layout->set_form(
 
     <<<EOT
-    <form method="post" accept-charset="UTF-8" name="gerencia"  id="contact-form">
+    <form method="post" accept-charset="UTF-8" name="formulario" action="reporte_articulo.php" id="contact-form"  id="contact-form">
     <div class="formLayout">
     <fieldset>
 

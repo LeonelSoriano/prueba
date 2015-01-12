@@ -69,7 +69,7 @@ if (isset($_POST['submit']))
 
 
         $sql = "insert into mrh_cargo(codigoalias,descripcion,tipo_cargo,tipo_cargo_opcion)
-                                                      values('$codigoalias','$descripcion','$tipo_cargo',$tipo_cargo_opcion)";
+                                                      values('$codigoalias','$descripcion','$tipo_cargo','$tipo_cargo_opcion')";
         //echo $sql;
         //exit;
         mysql_query($sql) or die('No se pudo guardar la información. '.mysql_error());

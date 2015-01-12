@@ -73,8 +73,8 @@ for($i = 1 ; $i < count($numerical);$i++){
             'regla' => 'letter'),
 
         array('nombre' => 'segundoapellido',
-            'requerida' => false,
-            'regla' => 'letter'),
+            'requerida' => false
+            ),
 
         array('nombre' => 'fechaingreso',
             'requerida' => true),

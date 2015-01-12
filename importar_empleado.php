@@ -113,8 +113,6 @@ $layout->set_form(
 
     '
 
-
-
 );
 
 $layout->get_footer();

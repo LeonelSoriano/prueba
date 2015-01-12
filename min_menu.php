@@ -480,7 +480,7 @@ vertical-align: middle;">
                                             <li>
                                                 <a href="">Reportes</a>
                                                 <ul>
-                                                    <li><a href="./min/reporte/pre_reporte_articulo">Reporte de Articulo</a></li>
+                                                    <li><a href="./min/reporte/pre_reporte_articulo.php">Reporte de Articulo</a></li>
                                                     <li><a href="./min/reporte/pre_reporte_historico_producto.php">Historial Productos</a></li>
                                                     <li><a href="./min/reporte/reporte_proveedor.php">Reporte Proveedor</a></li>
 

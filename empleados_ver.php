@@ -26,6 +26,8 @@ $result=mysql_query("SELECT
                           mrh_empleado.ficha as ficha,
                           mrh_empleado.primernombre as primernombre,
                           mrh_empleado.primerapellido as primerapellido,
+                          mrh_empleado.segundonombre as segundonombre,
+                          mrh_empleado.segundoapellido as segundoapellido,
                           mrh_empleado.nacionalidad as condicion,
                           mrh_empleado.fechanacimiento as fechanacimiento,
                           mrh_empleado.telefono as telefono,

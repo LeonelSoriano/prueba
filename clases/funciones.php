@@ -373,7 +373,7 @@ function sanear_numero($numero){
 
     $numero = str_replace(',','',$numero);
     $numero = str_replace(' ','',$numero);
-    $numero = str_replace('.',',',$numero);
+    //$numero = str_replace('.',',',$numero);
 
     return $numero;
 

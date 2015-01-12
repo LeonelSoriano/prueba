@@ -139,7 +139,7 @@ FROM
                 ON mco_unidad.codigo = min_productos_servicios.mco_unidad INNER JOIN min_tipo_inventario
                 ON min_tipo_inventario.codigo = min_productos_servicios.inventario INNER JOIN min_valoracion
                 ON min_valoracion.codigo = min_productos_servicios.codigo
-       '.$filtrado.'
+
     UNION ALL SELECT
             "Subtotal" AS Nombre ,
             min_tipo_inventario.tipo AS Inventario ,
@@ -153,7 +153,7 @@ FROM
                 ON mco_unidad.codigo = min_productos_servicios.mco_unidad INNER JOIN min_tipo_inventario
                 ON min_tipo_inventario.codigo = min_productos_servicios.inventario INNER JOIN min_valoracion
                 ON min_valoracion.codigo = min_productos_servicios.codigo
-        '.$filtrado.'
+        
         GROUP BY
             min_tipo_inventario.codigo
    ORDER BY
@@ -176,7 +176,7 @@ FROM
                 ON mco_unidad.codigo = min_productos_servicios.mco_unidad INNER JOIN min_tipo_inventario
                 ON min_tipo_inventario.codigo = min_productos_servicios.inventario INNER JOIN min_valoracion
                 ON min_valoracion.codigo = min_productos_servicios.codigo
-        '.$filtrado.'
+  
 
 
     ) as b
